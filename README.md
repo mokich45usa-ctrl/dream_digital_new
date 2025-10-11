@@ -36,4 +36,19 @@
   git remote add origin https://github.com/mokich45usa-ctrl/dream_digital_new
   git push -u origin main
   ```
+
+  ## AI Assistant (DeepSeek) on Netlify
+
+  This project includes an AI chat in `src/components/AIDrawer.tsx`. It calls a Netlify Function at `/.netlify/functions/deepseek-chat`.
+
+  - Netlify function: `netlify/functions/deepseek-chat.js`
+  - Configure environment variable on Netlify:
+    - `DEEPSEEK_API_KEY=YOUR_DEEPSEEK_KEY`
+  - Deploy will expose the function at `/.netlify/functions/deepseek-chat`.
+
+  Local test (Netlify CLI):
+  ```bash
+  npm i -g netlify-cli
+  netlify dev
+  ```
   

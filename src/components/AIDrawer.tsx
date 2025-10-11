@@ -20,37 +20,38 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
   ]);
   const [inputValue, setInputValue] = useState('');
 
-  const handleSendMessage = () => {
-    if (inputValue.trim()) {
-      // Add user message
-      const newMessages = [...messages, { type: 'user' as const, text: inputValue }];
-      setMessages(newMessages);
-      
-      // Simulate AI response after a delay
-      setTimeout(() => {
-        const aiResponse = generateAIResponse(inputValue);
-        setMessages(prev => [...prev, { type: 'ai' as const, text: aiResponse }]);
-      }, 1000);
-      
-      setInputValue('');
+  const handleSendMessage = async () => {
+    if (!inputValue.trim()) return;
+
+    const userText = inputValue;
+    setInputValue('');
+
+    const newMessages = [...messages, { type: 'user' as const, text: userText }];
+    setMessages(newMessages);
+
+    try {
+      const res = await fetch('/.netlify/functions/deepseek-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            { role: 'system', content: 'You are a helpful web studio assistant for DreamDigital. Keep answers concise.' },
+            ...newMessages.map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.text }))
+          ]
+        })
+      });
+      if (!res.ok) {
+        throw new Error('Request failed');
+      }
+      const data = await res.json();
+      const reply = data?.reply || 'Sorry, I could not respond right now.';
+      setMessages(prev => [...prev, { type: 'ai' as const, text: reply }]);
+    } catch (e) {
+      setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
     }
   };
 
-  const generateAIResponse = (userMessage: string): string => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    if (lowerMessage.includes('landing') || lowerMessage.includes('page')) {
-      return 'Perfect! A landing page is great for startups. What\'s your main goal - lead generation, product sales, or brand awareness?';
-    } else if (lowerMessage.includes('ecommerce') || lowerMessage.includes('shop')) {
-      return 'E-commerce is exciting! How many products will you be selling? Do you need payment processing and inventory management?';
-    } else if (lowerMessage.includes('portfolio') || lowerMessage.includes('showcase')) {
-      return 'A portfolio site is perfect for showcasing your work. How many projects would you like to feature?';
-    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-      return 'Based on our conversation, I\'d recommend our Landing Start package ($2,500) or Pro Website package ($5,000). Would you like details on either?';
-    } else {
-      return 'That sounds interesting! Can you tell me more about your specific needs and target audience?';
-    }
-  };
+  // Legacy local rules removed; replies now come from serverless function
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
