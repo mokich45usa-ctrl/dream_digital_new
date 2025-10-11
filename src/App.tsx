@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { Hero } from './components/Hero';
-import { InfiniteScrollGallery } from './components/InfiniteScrollGallery';
+import { Suspense, lazy } from 'react';
+const InfiniteScrollGallery = lazy(() => import('./components/InfiniteScrollGallery').then(m => ({ default: m.InfiniteScrollGallery })));
 // import { TrustStrip } from './components/TrustStrip';
 // import { PortfolioShowcase } from './components/PortfolioShowcase';
 // import { OurWorksWithSteps } from './components/OurWorks';
 // import { OurPromise } from './components/OurPromise';
-import { TrustAndSecurity } from './components/TrustAndSecurity';
-import { Stats } from './components/Stats';
-import { ProfessionalWebsites } from './components/ProfessionalWebsites';
-import { SimpleProcess } from './components/SimpleProcess';
-import { BigReveal } from './components/BigReveal';
+const TrustAndSecurity = lazy(() => import('./components/TrustAndSecurity').then(m => ({ default: m.TrustAndSecurity })));
+const Stats = lazy(() => import('./components/Stats').then(m => ({ default: m.Stats })));
+const ProfessionalWebsites = lazy(() => import('./components/ProfessionalWebsites').then(m => ({ default: m.ProfessionalWebsites })));
+const SimpleProcess = lazy(() => import('./components/SimpleProcess').then(m => ({ default: m.SimpleProcess })));
+const BigReveal = lazy(() => import('./components/BigReveal').then(m => ({ default: m.BigReveal })));
 // import { HowItWorks } from './components/HowItWorks';
 // import { PaymentProcess } from './components/PaymentProcess';
-import { FeaturedWork } from './components/FeaturedWork';
-import { AIAssistantDemo } from './components/AIAssistantDemo';
-import { Packages } from './components/Packages';
-import { Testimonials } from './components/Testimonials';
-import { FAQ } from './components/FAQ';
-import { Footer } from './components/Footer';
+const FeaturedWork = lazy(() => import('./components/FeaturedWork').then(m => ({ default: m.FeaturedWork })));
+const AIAssistantDemo = lazy(() => import('./components/AIAssistantDemo').then(m => ({ default: m.AIAssistantDemo })));
+const Packages = lazy(() => import('./components/Packages').then(m => ({ default: m.Packages })));
+const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
+const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
+const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 import { AIDrawer } from './components/AIDrawer';
 import { Header } from './components/Header';
 import { DreamBackground } from './components/DreamBackground';
@@ -116,12 +117,12 @@ export default function App() {
 
         {/* Infinite Scroll Gallery - Pure visual, no background */}
         <div data-section="infinite-gallery" className="relative py-8 lg:py-12 bg-white">
-          <InfiniteScrollGallery />
+          <Suspense fallback={null}><InfiniteScrollGallery /></Suspense>
         </div>
 
         {/* Simple Process - White background */}
         <div data-section="simple-process" className="relative bg-white">
-          <SimpleProcess />
+          <Suspense fallback={null}><SimpleProcess /></Suspense>
         </div>
         
         {/* Normal intensity background for other sections */}
@@ -144,10 +145,10 @@ export default function App() {
               <OurPromise onStartWithDremy={openDrawer} />
             </div> */}
             <div data-section="trust-security">
-              <TrustAndSecurity onGetStarted={openDrawer} />
+            <Suspense fallback={null}><TrustAndSecurity onGetStarted={openDrawer} /></Suspense>
             </div>
             <div data-section="stats">
-              <Stats />
+              <Suspense fallback={null}><Stats /></Suspense>
             </div>
             {/* <div data-section="how-it-works">
               <HowItWorks />
@@ -157,29 +158,29 @@ export default function App() {
             </div> */}
             {/* Professional Websites - Before pricing */}
             <div data-section="professional-websites">
-              <ProfessionalWebsites />
+              <Suspense fallback={null}><ProfessionalWebsites /></Suspense>
             </div>
             {/* Big Reveal - Dramatic conversion block */}
             <div data-section="big-reveal">
-              <BigReveal onGetStarted={openDrawer} />
+              <Suspense fallback={null}><BigReveal onGetStarted={openDrawer} /></Suspense>
             </div>
             <div data-section="packages">
-              <Packages onGetQuote={openDrawer} />
+              <Suspense fallback={null}><Packages onGetQuote={openDrawer} /></Suspense>
             </div>
             <div data-section="work">
-              <FeaturedWork />
+              <Suspense fallback={null}><FeaturedWork /></Suspense>
             </div>
             <div data-section="testimonials">
-              <Testimonials />
+              <Suspense fallback={null}><Testimonials /></Suspense>
             </div>
             <div data-section="faq">
-              <FAQ onGetStarted={openDrawer} />
+              <Suspense fallback={null}><FAQ onGetStarted={openDrawer} /></Suspense>
             </div>
             <div data-section="ai-demo">
-              <AIAssistantDemo onGetStarted={openDrawer} />
+              <Suspense fallback={null}><AIAssistantDemo onGetStarted={openDrawer} /></Suspense>
             </div>
             <div data-section="footer">
-              <Footer onGetStarted={openDrawer} />
+              <Suspense fallback={null}><Footer onGetStarted={openDrawer} /></Suspense>
             </div>
           </div>
         </div>

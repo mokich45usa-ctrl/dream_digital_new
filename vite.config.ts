@@ -50,6 +50,19 @@
     build: {
       target: 'esnext',
       outDir: 'build',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor_react: ['react', 'react-dom'],
+          vendor_ui: [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-select',
+            'lucide-react'
+          ],
+        }
+      }
+    }
     },
     server: {
       port: 3000,
