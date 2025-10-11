@@ -51,4 +51,11 @@
   npm i -g netlify-cli
   netlify dev
   ```
+
+  ## SEO Setup
+
+  - Edit `index.html` meta tags (title, description, OG/Twitter). Replace `<YOUR_DOMAIN_OR_NETLIFY>` with your real domain.
+  - Place preview image at `public/og-image.jpg` for social sharing.
+  - Update `public/robots.txt` and `public/sitemap.xml` with your domain.
+  - In Netlify domain settings, set primary domain and enable HTTPS.
   
