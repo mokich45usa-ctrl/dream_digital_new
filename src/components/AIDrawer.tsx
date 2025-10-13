@@ -2,6 +2,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { X, Send } from 'lucide-react';
 import { useState } from 'react';
+import { AI_CONFIG } from '../ai/config';
 
 interface AIDrawerProps {
   isOpen: boolean;
@@ -35,9 +36,12 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: [
-            { role: 'system', content: 'You are a helpful web studio assistant for DreamDigital. Keep answers concise.' },
+            { role: 'system', content: AI_CONFIG.systemPrompt },
             ...newMessages.map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.text }))
-          ]
+          ],
+          temperature: AI_CONFIG.temperature,
+          max_tokens: AI_CONFIG.maxTokens,
+          model: AI_CONFIG.model
         })
       });
       if (!res.ok) {

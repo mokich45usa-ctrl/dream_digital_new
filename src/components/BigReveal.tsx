@@ -78,23 +78,7 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
               </div>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="absolute -bottom-4 -right-4"
-            >
-              <button
-                onClick={onGetStarted}
-                className="fancy-black"
-              >
-                <span className="text">Get Started</span>
-                <span className="top-key"></span>
-                <span className="bottom-key-1"></span>
-                <span className="bottom-key-2"></span>
-              </button>
-            </motion.div>
+            {/* Removed duplicate left-side Get Started button as requested */}
           </motion.div>
           
           {/* Right: Content */}

@@ -26,6 +26,7 @@ import { DreamBackground } from './components/DreamBackground';
 import { FloatingChatButton } from './components/FloatingChatButton';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Toaster } from './components/ui/sonner';
+import { LeadModal } from './components/LeadModal';
 
 interface AccentColor {
   name: string;
@@ -37,6 +38,7 @@ interface AccentColor {
 export default function App() {
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isLeadOpen, setIsLeadOpen] = useState(false);
 
   // Accent colors for user customization
   const accentColors: AccentColor[] = [
@@ -76,6 +78,7 @@ export default function App() {
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
   const handleEnter = () => setShowLoadingScreen(false);
+  const openLead = () => setIsLeadOpen(true);
 
   return (
     <>
@@ -89,7 +92,7 @@ export default function App() {
       {/* Main App */}
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       {/* Navigation Header - Always on top */}
-      <Header onGetStarted={openDrawer} />
+      <Header onGetStarted={openLead} />
 
       {/* Dream background - Hero intensity */}
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
@@ -108,7 +111,7 @@ export default function App() {
       <div className={`min-h-screen transition-all duration-300 pb-20 sm:pb-0 relative ${isDrawerOpen ? 'lg:mr-[450px]' : ''}`}>
         <div data-section="hero" className="relative z-10">
           <Hero 
-            onGetStarted={openDrawer}
+            onGetStarted={openLead}
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
             accentColors={accentColors}
@@ -145,7 +148,7 @@ export default function App() {
               <OurPromise onStartWithDremy={openDrawer} />
             </div> */}
             <div data-section="trust-security">
-            <Suspense fallback={null}><TrustAndSecurity onGetStarted={openDrawer} /></Suspense>
+            <Suspense fallback={null}><TrustAndSecurity onGetStarted={openLead} /></Suspense>
             </div>
             <div data-section="stats">
               <Suspense fallback={null}><Stats /></Suspense>
@@ -162,10 +165,10 @@ export default function App() {
             </div>
             {/* Big Reveal - Dramatic conversion block */}
             <div data-section="big-reveal">
-              <Suspense fallback={null}><BigReveal onGetStarted={openDrawer} /></Suspense>
+              <Suspense fallback={null}><BigReveal onGetStarted={openLead} /></Suspense>
             </div>
             <div data-section="packages">
-              <Suspense fallback={null}><Packages onGetQuote={openDrawer} /></Suspense>
+              <Suspense fallback={null}><Packages onGetQuote={openLead} /></Suspense>
             </div>
             <div data-section="work">
               <Suspense fallback={null}><FeaturedWork /></Suspense>
@@ -188,6 +191,9 @@ export default function App() {
 
       {/* AI Assistant Drawer */}
       <AIDrawer isOpen={isDrawerOpen} onClose={closeDrawer} />
+
+      {/* Lead Modal */}
+      <LeadModal open={isLeadOpen} onOpenChange={setIsLeadOpen} />
       
       {/* Floating Chat Button */}
       <FloatingChatButton onClick={openDrawer} isDrawerOpen={isDrawerOpen} />
