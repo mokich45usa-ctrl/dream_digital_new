@@ -108,7 +108,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
   const packages = [
     {
       title: 'Business Card Website',
-      price: '$200',
+      price: '$250',
       description: 'A simple, fast way to get your business online.',
       delivery: '24 hours',
       features: [
@@ -122,7 +122,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
     },
     {
       title: 'Landing Page',
-      price: '$500',
+      price: '$600',
       description: 'A one-page site designed to convert visitors into clients.',
       delivery: '3-5 days',
       isPopular: true,
@@ -136,7 +136,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
     },
     {
       title: 'Multi-Page Website',
-      price: '$900',
+      price: '$1200',
       description: 'A full website with all key sections your business needs.',
       delivery: '7-10 days',
       features: [

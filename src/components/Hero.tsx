@@ -136,7 +136,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-4xl mx-auto">
             Get a professional website from{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">$200</span>
+              <span className="relative z-10">$250</span>
               <div className="absolute bottom-2 left-0 right-0 h-3 bg-brand/20" />
             </span>
             {' '}and jumpstart your business.

@@ -69,7 +69,7 @@ export function Stats() {
     { value: "115+", label: "Websites Delivered" },
     { value: "48h", label: "Average Delivery" },
     { value: "98%", label: "Client Satisfaction" },
-    { value: "$200", label: "Starting Price" },
+    { value: "$250", label: "Starting Price" },
   ];
 
   return (
