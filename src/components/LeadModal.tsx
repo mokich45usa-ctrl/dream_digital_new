@@ -4,6 +4,8 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { toast } from 'sonner@2.0.3';
+import { motion } from 'motion/react';
+import { Lock } from 'lucide-react';
 
 interface LeadModalProps {
   open: boolean;
@@ -65,33 +67,50 @@ export function LeadModal({ open, onOpenChange }: LeadModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="md:max-w-[16rem] lg:max-w-[16rem] xl:max-w-[16rem] 2xl:max-w-[16rem]">
         <DialogHeader>
-          <DialogTitle>Get your quote</DialogTitle>
+          <DialogTitle>Let's build your dream website</DialogTitle>
           <DialogDescription>
-            Leave your contacts and tell us about your dream website. We'll get back within 24 hours.
+            Share a few details — we'll reply within 24 hours with ideas and pricing
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="space-y-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+        >
           <div className="space-y-2">
             <label className="text-sm font-medium">Name</label>
-            <Input value={name} onChange={e => setName(e.target.value)} placeholder="Your name" />
+            <Input value={name} onChange={e => setName(e.target.value)} placeholder="Alex Johnson" required />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">Email</label>
-            <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" />
+            <Input type="email" inputMode="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="alex@studio.co" required />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Tell us about your dream</label>
-            <Textarea value={dream} onChange={e => setDream(e.target.value)} placeholder="Business, goals, deadlines — anything important" rows={5} />
+            <label className="text-sm font-medium">Project details</label>
+            <Textarea 
+              value={dream} 
+              onChange={e => setDream(e.target.value)} 
+              placeholder="I run a studio and need a modern website with a booking system" 
+              rows={5}
+              required 
+            />
           </div>
           <DialogFooter>
-            <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={!isValid || isSubmitting}>
+            <Button 
+              type="submit" 
+              disabled={!isValid || isSubmitting}
+              className="bg-accent-dark text-white hover:bg-accent-dark-soft shadow-soft"
+            >
               {isSubmitting ? 'Sending…' : 'Send request'}
             </Button>
           </DialogFooter>
-        </form>
+          <div className="pt-1 text-sm text-text-secondary flex items-center gap-2">
+            <Lock className="w-4 h-4" />
+            <span>Your info is secure. We'll never share your contact details.</span>
+          </div>
+        </motion.form>
       </DialogContent>
     </Dialog>
   );

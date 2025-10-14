@@ -3,6 +3,8 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useState } from 'react';
+import { motion } from 'motion/react';
+import { Lock } from 'lucide-react';
 import { toast } from "sonner@2.0.3";
 
 interface LeadCaptureProps {
@@ -98,15 +100,21 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="heading-section" style={{ textShadow: '0 2px 4px rgba(255,255,255,0.9), 0 1px 2px rgba(255,255,255,0.7)' }}>
-              Ready to talk?
+              Let's build your dream website
             </h2>
             <p className="text-lg text-gray-600" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>
-              Prefer human contact? Leave your info and we'll reply same day.
+              Share a few details — we'll reply within 24 hours with ideas and pricing
             </p>
           </div>
 
           {/* Form */}
-          <div className="Lead/Form bg-white/95 backdrop-blur-sm rounded-soft p-8 shadow-elevated border border-white/50">
+          <motion.div 
+            className="Lead/Form bg-white/95 backdrop-blur-sm rounded-soft p-8 shadow-elevated border border-white/50"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -114,7 +122,7 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
                     Name
                   </label>
                   <Input 
-                    placeholder="Your name" 
+                    placeholder="Alex Johnson" 
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     required
@@ -126,7 +134,7 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
                   </label>
                   <Input 
                     type="email" 
-                    placeholder="your@email.com" 
+                    placeholder="alex@studio.co" 
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     required
@@ -140,7 +148,7 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
                     Company
                   </label>
                   <Input 
-                    placeholder="Company name" 
+                    placeholder="Bright Studio" 
                     value={formData.company}
                     onChange={(e) => handleInputChange('company', e.target.value)}
                   />
@@ -168,7 +176,7 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
                   Message
                 </label>
                 <Textarea 
-                  placeholder="Tell us about your project..."
+                  placeholder="I run a studio and need a modern website with a booking system"
                   rows={4}
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
@@ -177,20 +185,18 @@ export function LeadCapture({ onChatWithAI }: LeadCaptureProps) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button type="submit" className="bg-gray-900 text-white hover:bg-gray-800 px-8" disabled={isSubmitting}>
+                <Button type="submit" className="bg-accent-dark text-white hover:bg-accent-dark-soft shadow-soft px-8" disabled={isSubmitting}>
                   {isSubmitting ? 'Sending…' : 'Send Message'}
                 </Button>
-                <Button 
-                  type="button"
-                  variant="ghost"
-                  onClick={onChatWithAI}
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Chat with AI Assistant instead
-                </Button>
+              </div>
+
+              {/* Trust note */}
+              <div className="pt-2 text-sm text-gray-500 flex items-center gap-2">
+                <Lock className="w-4 h-4" />
+                <span>Your info is secure. We'll never share your contact details.</span>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

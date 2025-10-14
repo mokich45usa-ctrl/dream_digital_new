@@ -108,7 +108,7 @@ export default function App() {
       )}
 
       {/* Main content */}
-      <div className={`min-h-screen transition-all duration-300 pb-20 sm:pb-0 relative ${isDrawerOpen ? 'lg:mr-[450px]' : ''}`}>
+      <div className={`min-h-screen transition-all duration-300 pb-20 sm:pb-0 relative`}>
         <div data-section="hero" className="relative z-10">
           <Hero 
             onGetStarted={openLead}
@@ -196,7 +196,7 @@ export default function App() {
       <LeadModal open={isLeadOpen} onOpenChange={setIsLeadOpen} />
       
       {/* Floating Chat Button */}
-      <FloatingChatButton onClick={openDrawer} isDrawerOpen={isDrawerOpen} />
+      <FloatingChatButton onClick={openDrawer} isDrawerOpen={isDrawerOpen} ready={!showLoadingScreen} />
       
       {/* Toast notifications */}
       <Toaster />
