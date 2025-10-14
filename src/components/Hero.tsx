@@ -176,7 +176,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           <div className="flex flex-wrap justify-center items-center gap-8 pt-8 text-sm text-text-tertiary">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              <span>2-minute setup</span>
+              <span>2-minute application</span>
             </div>
             <div className="w-px h-4 bg-border" />
             <div className="flex items-center gap-2">
