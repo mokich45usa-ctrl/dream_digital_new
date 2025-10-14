@@ -145,7 +145,7 @@ export default function App() {
               <OurWorksWithSteps onSeeMore={openDrawer} />
             </div> */}
             {/* <div data-section="promise">
-              <OurPromise onStartWithDremy={openDrawer} />
+              <OurPromise onStartWithDreamy={openDrawer} />
             </div> */}
             <div data-section="trust-security">
             <Suspense fallback={null}><TrustAndSecurity onGetStarted={openLead} /></Suspense>

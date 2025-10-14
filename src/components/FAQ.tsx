@@ -71,7 +71,7 @@ export function FAQ({ onGetStarted }: FAQProps) {
     {
       question: "How does the process work?",
       answer: `It's simple and fast.
-You start by answering a few questions with our AI assistant, Dremy.
+You start by answering a few questions with our AI assistant, Dreamy.
 We'll then send you a clear proposal — including the scope, price, and delivery time.
 Once you approve and pay securely via Stripe, you'll receive several design options the same day.
 From there, we deliver your finished website exactly on schedule.`
@@ -84,7 +84,7 @@ We're based in California and operate transparently — no hidden fees, no shady
     {
       question: "How long will it take to get my website?",
       answer: `It depends on your package:
-• Starter — within 24–48 hours
+• Starter — within 24 hours
 • Professional — within 3–5 days
 • Premium — within 7–10 days
 We start immediately after confirming your payment.`

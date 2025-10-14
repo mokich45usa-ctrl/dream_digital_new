@@ -204,7 +204,7 @@ p {
 ```html
 <!-- Hero button with gradient -->
 <button class="bg-brand-gradient text-brand-contrast shadow-brand-glow">
-  Start with Dremy
+  Start with Dreamy
 </button>
 
 <!-- Card with subtle accent -->

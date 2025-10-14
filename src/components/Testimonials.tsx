@@ -45,7 +45,7 @@ const testimonials = [
   {
     name: "Anna Torop",
     role: "Hair Salon Owner",
-    content: "Honestly, I didn't believe they could do it in 48 hours. But they did! The site is gorgeous, my clients keep complimenting it. I'm getting way more bookings now — like 40% more in just the first month. Worth every penny.",
+    content: "Honestly, I didn't believe they could do it in 24 hours. But they did! The site is gorgeous, my clients keep complimenting it. I'm getting way more bookings now — like 40% more in just the first month. Worth every penny.",
     rating: 5,
     platform: "google"
   },

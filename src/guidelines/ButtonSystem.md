@@ -27,7 +27,7 @@ A comprehensive button system designed for the DREAM DIGITAL brand with 4 varian
 **Usage:**
 ```tsx
 <Button variant="primary" size="md">
-  Start with Dremy
+  Start with Dreamy
 </Button>
 ```
 
@@ -145,7 +145,7 @@ A comprehensive button system designed for the DREAM DIGITAL brand with 4 varian
 
 **Usage:**
 ```tsx
-<Button size="md">Start with Dremy</Button>
+<Button size="md">Start with Dreamy</Button>
 ```
 
 ---
@@ -294,7 +294,7 @@ ring: 4px solid rgba(110, 123, 242, 0.2);
 Use **verb + result** format for button labels:
 
 ✅ **Good Examples:**
-- "Start with Dremy" - Clear action + outcome
+- "Start with Dreamy" - Clear action + outcome
 - "Get Your Offer" - Verb + benefit
 - "Launch Your Site" - Action + result
 - "View Pricing" - Verb + object
@@ -315,7 +315,7 @@ Use **verb + result** format for button labels:
 - **Large:** Max 25 characters
 
 ### Case Style
-- **Title Case** for primary CTAs: "Start with Dremy"
+- **Title Case** for primary CTAs: "Start with Dreamy"
 - **Sentence case** for secondary actions: "View all packages"
 - **Title Case** for navigation: "Get Started"
 
@@ -327,7 +327,7 @@ Use **verb + result** format for button labels:
 ```tsx
 <div className="flex gap-4">
   <Button variant="primary" size="lg">
-    Start with Dremy
+    Start with Dreamy
   </Button>
   <Button variant="secondary" size="lg">
     View Pricing

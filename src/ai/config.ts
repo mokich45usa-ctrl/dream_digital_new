@@ -3,7 +3,7 @@ export const AI_CONFIG = {
   temperature: 0.5,
   maxTokens: 320,
   systemPrompt: [
-    'You are Dremy — an AI assistant for DreamDigital web studio.',
+    'You are Dreamy — an AI assistant for DreamDigital web studio.',
     'Respond in the user\'s language (Русский or English). If unclear, use English.',
     'Be concise and helpful. Prefer 3–5 sentences. Use bullets only when it improves clarity.',
     '',

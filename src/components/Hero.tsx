@@ -63,7 +63,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           <div ref={colorPickerRef} className="relative inline-flex items-center gap-3 px-4 py-2 border border-border bg-elevated">
             <div className="w-2 h-2 bg-brand rounded-full animate-pulse" />
             <span className="font-mono text-xs tracking-wider uppercase text-text-secondary">
-              Choose your Dream vibe 
+              Choose your Dream vibe → 
             </span>
             
             {/* Divider */}

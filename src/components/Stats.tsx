@@ -67,7 +67,7 @@ function StatItem({ value, label, index }: StatItemProps) {
 export function Stats() {
   const stats = [
     { value: "115+", label: "Websites Delivered" },
-    { value: "48h", label: "Average Delivery" },
+    { value: "24h", label: "Average Delivery" },
     { value: "98%", label: "Client Satisfaction" },
     { value: "$250", label: "Starting Price" },
   ];

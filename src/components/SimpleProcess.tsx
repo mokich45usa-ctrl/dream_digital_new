@@ -74,7 +74,7 @@ export function SimpleProcess() {
     {
       number: "01",
       icon: <MessageSquare size={28} strokeWidth={2} />,
-      title: "Chat with Dremy",
+      title: "Chat with Dreamy",
       description: "Answer 5 quick questions about your business. Our AI assistant builds your perfect package instantly."
     },
     {
