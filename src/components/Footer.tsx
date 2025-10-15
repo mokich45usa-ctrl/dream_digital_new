@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, MessageCircle, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Mail, MessageCircle, Instagram, Facebook, Linkedin, Send } from 'lucide-react';
 import { useState } from 'react';
 
 interface FooterProps {
@@ -118,13 +118,24 @@ export function Footer({ onGetStarted }: FooterProps) {
               Get in Touch
             </h3>
             <div className="space-y-4">
-              <button 
-                onClick={onGetStarted}
-                className="group inline-flex items-center justify-start gap-3 text-white/70 hover:text-white transition-colors"
+              <a 
+                href="https://wa.me/16192072318"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
               >
-                <MessageCircle className="w-5 h-5 flex-shrink-0" />
-                <span>Get Started</span>
-              </button>
+                <MessageCircle className="w-5 h-5" />
+                <span>WhatsApp</span>
+              </a>
+              <a 
+                href="https://t.me/dreamdigitalteam"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
+              >
+                <Send className="w-5 h-5" />
+                <span>Telegram</span>
+              </a>
               <a 
                 href="mailto:dreamdigital72@gmail.com"
                 className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
@@ -141,7 +152,7 @@ export function Footer({ onGetStarted }: FooterProps) {
               </h4>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/dreamdigital.team?igsh=MXQzZmwxbmR0eGk4NA%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border-2 border-white/20 flex items-center justify-center hover:border-white hover:bg-white/10 transition-all group"
@@ -150,7 +161,7 @@ export function Footer({ onGetStarted }: FooterProps) {
                   <Instagram className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/profile.php?id=61579975773975&mibextid=wwXIfr&mibextid=wwXIfr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border-2 border-white/20 flex items-center justify-center hover:border-white hover:bg-white/10 transition-all group"
