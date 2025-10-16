@@ -131,7 +131,7 @@ export function OurWorksWithSteps({ onSeeMore }: { onSeeMore?: () => void }) {
               <button
                 onClick={onSeeMore}
                 className="px-6 py-3 bg-brand text-white rounded-full"
-              >
+              data-cta="get-started">
                 Get Started
               </button>
             </div>

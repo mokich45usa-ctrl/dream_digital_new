@@ -169,6 +169,7 @@ You just describe your business — we take care of everything from concept to l
             Still have questions?
           </p>
           <button
+            data-cta="get-started"
             onClick={onGetStarted}
             className="fancy-black"
           >

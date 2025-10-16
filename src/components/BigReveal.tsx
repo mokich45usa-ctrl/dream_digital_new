@@ -127,6 +127,7 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
             
             <div className="pt-4">
               <button
+                data-cta="get-started"
                 onClick={onGetStarted}
                 className="fancy-black"
               >

@@ -101,7 +101,7 @@ export function Header({ onGetStarted }: HeaderProps) {
               <button 
                 onClick={handleGetStarted}
                 className="inline-flex items-center justify-center px-6 py-2.5 bg-accent-dark text-white text-sm text-center hover:bg-accent-dark-soft transition-colors"
-              >
+              data-cta="get-started">
                 <span className="font-semibold">Get Started</span>
               </button>
             </div>
@@ -144,7 +144,7 @@ export function Header({ onGetStarted }: HeaderProps) {
                 <button
                   onClick={handleGetStarted}
                   className="w-full inline-flex items-center justify-center px-4 py-3 bg-accent-dark text-white text-center hover:bg-accent-dark-soft transition-colors"
-                >
+                data-cta="get-started">
                   <span className="font-semibold">Get Started</span>
                 </button>
               </div>

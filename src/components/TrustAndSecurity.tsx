@@ -134,6 +134,7 @@ export function TrustAndSecurity({ onGetStarted }: TrustAndSecurityProps) {
             </div>
             
             <button
+              data-cta="get-started"
               onClick={onGetStarted}
               className="fancy-black"
             >

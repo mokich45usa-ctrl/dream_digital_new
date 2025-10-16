@@ -223,6 +223,7 @@ export function AIAssistantDemo({ onGetStarted }: AIAssistantDemoProps) {
           className="mt-12 text-center"
         >
           <button
+            data-cta="get-started"
             onClick={onGetStarted}
             className="fancy-black"
           >

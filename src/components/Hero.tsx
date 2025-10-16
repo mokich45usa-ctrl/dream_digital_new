@@ -152,6 +152,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <button 
+              data-cta="get-started"
               onClick={onGetStarted}
               className="fancy-black"
             >
