@@ -1,7 +1,7 @@
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { X, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AI_CONFIG } from '../ai/config';
 
 interface AIDrawerProps {
@@ -22,6 +22,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
   const [inputValue, setInputValue] = useState('');
   const [hasShownCta, setHasShownCta] = useState(false);
   const [assistantCount, setAssistantCount] = useState(0);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -62,7 +63,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
         const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
         el?.click();
         setHasShownCta(true);
-      } else if (btnMatch && !hasShownCta && assistantCount >= 2 && assistantCount % 5 === 0) {
+      } else if (btnMatch && !hasShownCta && assistantCount >= 2) {
         const label = btnMatch[1].trim();
         setMessages(prev => [...prev, { type: 'cta', text: label }]);
         setHasShownCta(true);
@@ -71,6 +72,11 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
     }
   };
+
+  // Auto-scroll to bottom on new messages
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [messages, isOpen]);
 
   // Legacy local rules removed; replies now come from serverless function
 
@@ -109,7 +115,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
           </div>
 
           {/* Messages */}
-          <div className="AI/Messages flex-1 p-6 overflow-y-auto space-y-4">
+          <div className="AI/Messages flex-1 p-6 overflow-y-auto space-y-4" id="ai-scroll-top">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -142,7 +148,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
           </div>
 
           {/* Input */}
-          <div className="AI/Input p-6 border-t border-border">
+          <div className="AI/Input p-6 border-t border-border" id="ai-scroll-bottom" ref={bottomRef}>
             <div className="flex gap-2">
               <Input 
                 placeholder="Type your message..."
