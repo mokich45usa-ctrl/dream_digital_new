@@ -47,6 +47,15 @@ export function LeadModal({ open, onOpenChange }: LeadModalProps) {
 
       const data = await response.json();
       if (response.ok && (data?.success ?? true)) {
+        // GTM event for successful form submit
+        try {
+          if (typeof window !== 'undefined') {
+            // @ts-ignore
+            window.dataLayer = window.dataLayer || [];
+            // @ts-ignore
+            window.dataLayer.push({ event: 'form_submit' });
+          }
+        } catch {}
         toast.success("Message sent successfully! We'll get back to you within 24 hours.");
         onOpenChange(false);
         setName('');

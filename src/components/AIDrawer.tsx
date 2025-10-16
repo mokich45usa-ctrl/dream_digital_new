@@ -48,8 +48,18 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
         throw new Error('Request failed');
       }
       const data = await res.json();
-      const reply = data?.reply || 'Sorry, I could not respond right now.';
-      setMessages(prev => [...prev, { type: 'ai' as const, text: reply }]);
+      const raw = data?.reply || 'Sorry, I could not respond right now.';
+      const hasAction = /\[ACTION:OPEN_FORM\]/i.test(raw);
+      const btnMatch = raw.match(/\[BUTTON:([^\]]+)\]/i);
+      const clean = raw.replace(/\[ACTION:OPEN_FORM\]/gi, '').replace(/\[BUTTON:[^\]]+\]/gi, '').trim();
+      setMessages(prev => [...prev, { type: 'ai' as const, text: clean }]);
+      if (hasAction) {
+        const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
+        el?.click();
+      } else if (btnMatch) {
+        const label = btnMatch[1].trim();
+        setMessages(prev => [...prev, { type: 'ai' as const, text: `(${label})` }]);
+      }
     } catch (e) {
       setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
     }
