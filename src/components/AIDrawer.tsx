@@ -3,6 +3,7 @@ import { Input } from './ui/input';
 import { X, Send } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { AI_CONFIG } from '../ai/config';
+// deploy: trigger rebuild
 
 interface AIDrawerProps {
   isOpen: boolean;
@@ -25,6 +26,8 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const desktopAnchorRef = useRef<HTMLDivElement | null>(null);
   const mobileAnchorRef = useRef<HTMLDivElement | null>(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -36,6 +39,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
     setMessages(newMessages);
 
     try {
+      setIsTyping(true);
       const res = await fetch('/.netlify/functions/deepseek-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -72,6 +76,8 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       }
     } catch (e) {
       setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
+    } finally {
+      setIsTyping(false);
     }
   };
 
@@ -97,7 +103,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       }`}>
         {/* Header */}
         <div className="AI/Header flex items-center justify-between p-6 border-b border-border">
-          <h3 className="text-lg font-medium text-card-foreground">AI Assistant</h3>
+          <h3 className="text-lg font-medium text-card-foreground">Dreamy AI Assistant</h3>
           <Button
             variant="ghost"
             size="sm"
@@ -110,13 +116,6 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
 
         {/* Content */}
         <div className="flex flex-col h-[calc(100vh-80px)]">
-          {/* Iframe Placeholder */}
-          <div className="AI/Iframe p-6 border-b border-border">
-            <div className="bg-muted border-2 border-dashed border-border rounded-soft p-8 text-center">
-              <p className="text-muted-foreground">AI Assistant (iframe here)</p>
-            </div>
-          </div>
-
           {/* Messages */}
           <div className="AI/Messages flex-1 p-6 overflow-y-auto space-y-4" id="ai-scroll-top">
             {messages.map((message, index) => (
@@ -148,6 +147,17 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 )}
               </div>
             ))}
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="max-w-[80%] p-3 rounded-soft shadow-soft bg-secondary text-secondary-foreground">
+                  <div className="flex gap-1 items-center">
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce"></span>
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                  </div>
+                </div>
+              </div>
+            )}
             <div ref={desktopAnchorRef} />
           </div>
 
@@ -178,7 +188,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       }`}>
         {/* Header */}
         <div className="AI/Header flex items-center justify-between p-4 border-b border-border">
-          <h3 className="text-lg font-medium text-card-foreground">AI Assistant</h3>
+          <h3 className="text-lg font-medium text-card-foreground">Dreamy AI Assistant</h3>
           <Button
             variant="ghost"
             size="sm"
@@ -191,13 +201,6 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
 
         {/* Content */}
         <div className="flex flex-col h-[calc(85vh-68px)]">
-          {/* Iframe Placeholder */}
-          <div className="AI/Iframe p-4 border-b border-border">
-            <div className="bg-muted border-2 border-dashed border-border rounded-soft p-6 text-center">
-              <p className="text-muted-foreground text-sm">AI Assistant (iframe here)</p>
-            </div>
-          </div>
-
           {/* Messages */}
           <div className="AI/Messages flex-1 p-4 overflow-y-auto space-y-3">
             {messages.map((message, index) => (
@@ -229,6 +232,17 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 )}
               </div>
             ))}
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="max-w-[80%] p-3 rounded-soft shadow-soft bg-secondary text-secondary-foreground">
+                  <div className="flex gap-1 items-center">
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce"></span>
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                    <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                  </div>
+                </div>
+              </div>
+            )}
             <div ref={mobileAnchorRef} />
           </div>
 

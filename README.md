@@ -58,4 +58,7 @@
   - Place preview image at `public/og-image.jpg` for social sharing.
   - Update `public/robots.txt` and `public/sitemap.xml` with your domain.
   - In Netlify domain settings, set primary domain and enable HTTPS.
+
+  
+  <!-- deploy marker: force rebuild -->
   
