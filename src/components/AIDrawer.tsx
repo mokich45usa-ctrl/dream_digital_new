@@ -75,7 +75,12 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    const container = document.querySelector('.AI/Messages:last-of-type');
+    if (container instanceof HTMLElement) {
+      container.scrollTop = container.scrollHeight;
+    } else {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
   }, [messages, isOpen]);
 
   // Legacy local rules removed; replies now come from serverless function

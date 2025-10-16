@@ -26,6 +26,9 @@ For auto-opening:
 - Add [ACTION:OPEN_FORM] ONLY if user’s message is a clear confirmation (ok, yes, proceed, start, да, поехали, оформить, заказать).
 - Otherwise, show the button only, no auto-action.
 
+Treat the following phrases as explicit confirmation immediately (no extra questions):
+"оставить заявку", "оставить запрос", "заполнить форму".
+
 Output hygiene:
 - Place control tokens at END of message.
 - Never include direct URLs to the form.
