@@ -27,7 +27,6 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
   const desktopAnchorRef = useRef<HTMLDivElement | null>(null);
   const mobileAnchorRef = useRef<HTMLDivElement | null>(null);
   const [isTyping, setIsTyping] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
