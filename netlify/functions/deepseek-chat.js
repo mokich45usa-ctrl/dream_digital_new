@@ -2,6 +2,8 @@
 // Expects POST { messages: [{ role: 'user'|'assistant'|'system', content: string }] }
 // Returns { reply: string }
 
+const { DREAMY_PROMPT } = require('./dreamy-config');
+
 exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -28,7 +30,10 @@ exports.handler = async function(event) {
       },
       body: JSON.stringify({
         model: body.model || 'deepseek-chat',
-        messages,
+        messages: [
+          { role: 'system', content: DREAMY_PROMPT },
+          ...messages
+        ],
         stream: false,
         temperature: typeof body.temperature === 'number' ? body.temperature : 0.7,
         max_tokens: typeof body.max_tokens === 'number' ? body.max_tokens : 512
