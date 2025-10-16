@@ -10,8 +10,8 @@ interface AIDrawerProps {
 }
 
 interface Message {
-  type: 'ai' | 'user';
-  text: string;
+  type: 'ai' | 'user' | 'cta';
+  text: string; // for 'cta', this is the button label
 }
 
 export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
@@ -52,13 +52,15 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       const hasAction = /\[ACTION:OPEN_FORM\]/i.test(raw);
       const btnMatch = raw.match(/\[BUTTON:([^\]]+)\]/i);
       const clean = raw.replace(/\[ACTION:OPEN_FORM\]/gi, '').replace(/\[BUTTON:[^\]]+\]/gi, '').trim();
-      setMessages(prev => [...prev, { type: 'ai' as const, text: clean }]);
+      // Append AI text
+      setMessages(prev => [...prev, { type: 'ai', text: clean }]);
+      // Handle CTA or Button token
       if (hasAction) {
         const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
         el?.click();
       } else if (btnMatch) {
         const label = btnMatch[1].trim();
-        setMessages(prev => [...prev, { type: 'ai' as const, text: `(${label})` }]);
+        setMessages(prev => [...prev, { type: 'cta', text: label }]);
       }
     } catch (e) {
       setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
@@ -108,15 +110,28 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 key={index}
                 className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div
-                  className={`max-w-[80%] p-3 rounded-soft shadow-soft ${
-                    message.type === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground'
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                </div>
+                {message.type === 'cta' ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
+                      el?.click();
+                    }}
+                    className="px-3 py-2 border-2 border-border bg-elevated hover:bg-subtle-8 text-text-primary text-sm rounded-soft shadow-soft"
+                  >
+                    {message.text}
+                  </button>
+                ) : (
+                  <div
+                    className={`max-w-[80%] p-3 rounded-soft shadow-soft ${
+                      message.type === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -175,15 +190,28 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 key={index}
                 className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div
-                  className={`max-w-[80%] p-3 rounded-soft shadow-soft ${
-                    message.type === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground'
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                </div>
+                {message.type === 'cta' ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
+                      el?.click();
+                    }}
+                    className="px-3 py-2 border-2 border-border bg-elevated hover:bg-subtle-8 text-text-primary text-sm rounded-soft shadow-soft"
+                  >
+                    {message.text}
+                  </button>
+                ) : (
+                  <div
+                    className={`max-w-[80%] p-3 rounded-soft shadow-soft ${
+                      message.type === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
