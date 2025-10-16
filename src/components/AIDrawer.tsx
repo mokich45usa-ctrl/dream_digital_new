@@ -20,6 +20,8 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
     { type: 'ai', text: 'I can help you with landing pages, multi-page websites, or custom projects.' }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [hasShownCta, setHasShownCta] = useState(false);
+  const [assistantCount, setAssistantCount] = useState(0);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -54,13 +56,16 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
       const clean = raw.replace(/\[ACTION:OPEN_FORM\]/gi, '').replace(/\[BUTTON:[^\]]+\]/gi, '').trim();
       // Append AI text
       setMessages(prev => [...prev, { type: 'ai', text: clean }]);
+      setAssistantCount(c => c + 1);
       // Handle CTA or Button token
       if (hasAction) {
         const el = document.querySelector('[data-cta="get-started"]') as HTMLElement | null;
         el?.click();
-      } else if (btnMatch) {
+        setHasShownCta(true);
+      } else if (btnMatch && !hasShownCta && assistantCount >= 2 && assistantCount % 5 === 0) {
         const label = btnMatch[1].trim();
         setMessages(prev => [...prev, { type: 'cta', text: label }]);
+        setHasShownCta(true);
       }
     } catch (e) {
       setMessages(prev => [...prev, { type: 'ai' as const, text: 'Network error. Please try again later.' }]);
