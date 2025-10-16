@@ -23,6 +23,8 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
   const [hasShownCta, setHasShownCta] = useState(false);
   const [assistantCount, setAssistantCount] = useState(0);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const desktopAnchorRef = useRef<HTMLDivElement | null>(null);
+  const mobileAnchorRef = useRef<HTMLDivElement | null>(null);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -75,12 +77,8 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
-    const container = document.querySelector('.AI/Messages:last-of-type');
-    if (container instanceof HTMLElement) {
-      container.scrollTop = container.scrollHeight;
-    } else {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
+    desktopAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    mobileAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, isOpen]);
 
   // Legacy local rules removed; replies now come from serverless function
@@ -150,6 +148,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 )}
               </div>
             ))}
+            <div ref={desktopAnchorRef} />
           </div>
 
           {/* Input */}
@@ -230,6 +229,7 @@ export function AIDrawer({ isOpen, onClose }: AIDrawerProps) {
                 )}
               </div>
             ))}
+            <div ref={mobileAnchorRef} />
           </div>
 
           {/* Input */}
