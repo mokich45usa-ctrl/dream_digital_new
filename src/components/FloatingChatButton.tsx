@@ -52,18 +52,17 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
       <AnimatePresence>
         {showTeaser && !isDrawerOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.25 }}
-            className="fixed bottom-24 right-6 z-50 max-w-[240px] bg-white border border-border shadow-elevated px-4 py-3"
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-8 right-24 z-50 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2"
             onClick={() => setShowTeaser(false)}
             role="status"
             aria-live="polite"
           >
-            <div className="text-sm text-text-primary font-medium">Need help? Chat with Dreamy</div>
-            <div className="text-xs text-text-secondary mt-1">I'm here and ready to assist</div>
-            <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+            <span className="inline-flex h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
+            <span className="text-xs font-medium">I'm online.</span>
           </motion.div>
         )}
       </AnimatePresence>
