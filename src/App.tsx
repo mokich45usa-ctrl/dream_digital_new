@@ -177,10 +177,10 @@ export default function App() {
               <Suspense fallback={null}><Testimonials /></Suspense>
             </div>
             <div data-section="faq">
-              <Suspense fallback={null}><FAQ onGetStarted={openDrawer} /></Suspense>
+              <Suspense fallback={null}><FAQ onGetStarted={openLead} /></Suspense>
             </div>
             <div data-section="ai-demo">
-              <Suspense fallback={null}><AIAssistantDemo onGetStarted={openDrawer} /></Suspense>
+              <Suspense fallback={null}><AIAssistantDemo onGetStarted={openLead} /></Suspense>
             </div>
             <div data-section="footer">
               <Suspense fallback={null}><Footer onGetStarted={openDrawer} /></Suspense>
