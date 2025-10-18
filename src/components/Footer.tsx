@@ -230,13 +230,11 @@ export function Footer({ onGetStarted }: FooterProps) {
       </div>
       {/* Legal Modals */}
       <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
-        <DialogContent className="max-w-[92vw] sm:max-w-[48rem] md:max-w-[48rem] lg:max-w-[48rem] max-h-[85vh] p-0 overflow-hidden rounded-soft bg-elevated border-2 border-border">
-          <div className="sticky top-0 z-10 bg-elevated/95 backdrop-blur-sm border-b border-border px-6 py-4">
-            <DialogHeader>
-              <DialogTitle className="text-text-primary">Privacy Policy</DialogTitle>
-            </DialogHeader>
-          </div>
-          <div className="px-6 py-4 prose prose-sm max-w-none text-text-secondary h-[calc(85vh-64px)] overflow-y-auto">
+        <DialogContent className="w-[min(92vw,48rem)] max-h-[85vh] overflow-y-auto rounded-soft bg-elevated border-2 border-border p-6">
+          <DialogHeader>
+            <DialogTitle className="text-text-primary">Privacy Policy</DialogTitle>
+          </DialogHeader>
+          <div className="prose prose-sm max-w-none text-text-secondary">
             <p><strong>Effective Date:</strong> October 18, 2025</p>
             <p>DreamDigital Team (“DreamDigital,” “we,” “us,” or “our”) operates the website <span className="font-mono">dreamdigital.team</span> (the “Site”). This Privacy Policy explains what we collect, how we use it, and the choices you have.</p>
             <h4>1) Information We Collect</h4>
@@ -302,13 +300,11 @@ export function Footer({ onGetStarted }: FooterProps) {
         </DialogContent>
       </Dialog>
       <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
-        <DialogContent className="max-w-[92vw] sm:max-w-[48rem] md:max-w-[48rem] lg:max-w-[48rem] max-h-[85vh] p-0 overflow-hidden rounded-soft bg-elevated border-2 border-border">
-          <div className="sticky top-0 z-10 bg-elevated/95 backdrop-blur-sm border-b border-border px-6 py-4">
-            <DialogHeader>
-              <DialogTitle className="text-text-primary">Terms of Service</DialogTitle>
-            </DialogHeader>
-          </div>
-          <div className="px-6 py-4 prose prose-sm max-w-none text-text-secondary h-[calc(85vh-64px)] overflow-y-auto">
+        <DialogContent className="w-[min(92vw,48rem)] max-h-[85vh] overflow-y-auto rounded-soft bg-elevated border-2 border-border p-6">
+          <DialogHeader>
+            <DialogTitle className="text-text-primary">Terms of Service</DialogTitle>
+          </DialogHeader>
+          <div className="prose prose-sm max-w-none text-text-secondary">
             <p><strong>Effective Date:</strong> October 18, 2025</p>
             <p>Welcome to DreamDigital Team (“we,” “our,” “us”). By using our website or purchasing our services, you agree to these Terms and Conditions. Please read them carefully before proceeding.</p>
             <h4>1. Services Provided</h4>
@@ -353,13 +349,11 @@ export function Footer({ onGetStarted }: FooterProps) {
         </DialogContent>
       </Dialog>
       <Dialog open={cookieOpen} onOpenChange={setCookieOpen}>
-        <DialogContent className="max-w-[92vw] sm:max-w-[48rem] md:max-w-[48rem] lg:max-w-[48rem] max-h-[85vh] p-0 overflow-hidden rounded-soft bg-elevated border-2 border-border">
-          <div className="sticky top-0 z-10 bg-elevated/95 backdrop-blur-sm border-b border-border px-6 py-4">
-            <DialogHeader>
-              <DialogTitle className="text-text-primary">Cookie Policy</DialogTitle>
-            </DialogHeader>
-          </div>
-          <div className="px-6 py-4 prose prose-sm max-w-none text-text-secondary h-[calc(85vh-64px)] overflow-y-auto">
+        <DialogContent className="w-[min(92vw,48rem)] max-h-[85vh] overflow-y-auto rounded-soft bg-elevated border-2 border-border p-6">
+          <DialogHeader>
+            <DialogTitle className="text-text-primary">Cookie Policy</DialogTitle>
+          </DialogHeader>
+          <div className="prose prose-sm max-w-none text-text-secondary">
             <p><strong>Effective Date:</strong> October 18, 2025</p>
             <p>This Cookie Policy explains how DreamDigital Team (“we,” “our,” or “us”) uses cookies and similar technologies on the website <span className="font-mono">https://dreamdigital.team</span>.</p>
             <h4>1. What Are Cookies?</h4>
