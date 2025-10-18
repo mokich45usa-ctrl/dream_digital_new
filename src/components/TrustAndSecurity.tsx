@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import { Lock, Shield, CreditCard, ArrowRight } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
+import handshakeImg from '../../my materials/steps/u6955593233_handshake_between_client_and_digital_agency_trans_8e1c0011-c69b-4a5b-a1c8-18eb51831c1e_2.webp'
 
 interface TrustAndSecurityProps {
   onGetStarted?: () => void
@@ -24,7 +25,7 @@ export function TrustAndSecurity({ onGetStarted }: TrustAndSecurityProps) {
           >
             <div className="relative border-2 border-border overflow-hidden">
               <ImageWithFallback
-                src="https://lh3.googleusercontent.com/d/1O3qIyWRU9X_NuTLiLL7TF3Vy2sGJmwnw"
+                src={handshakeImg}
                 alt="Modern website on laptop screen"
                 className="w-full h-full object-cover"
               />

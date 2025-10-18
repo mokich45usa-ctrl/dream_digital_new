@@ -1,4 +1,16 @@
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import img01 from '../../my materials/Our Work/Screenshot_2025-10-07_at_11.03.47_AM.webp';
+import img02 from '../../my materials/Our Work/Screenshot_2025-10-07_at_11.08.28_AM.webp';
+import img03 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.29.24_PM.webp';
+import img04 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.34.11_PM.webp';
+import img05 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.36.37_PM.webp';
+import img06 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.54.23_PM.webp';
+import img07 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.55.37_PM.webp';
+import img08 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.56.46_PM.webp';
+import img09 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.58.54_PM.webp';
+import img10 from '../../my materials/Our Work/Screenshot_2025-10-08_at_4.59.44_PM.webp';
+import img11 from '../../my materials/Our Work/Screenshot_2025-10-08_at_5.15.28_PM.webp';
+import img12 from '../../my materials/Our Work/Screenshot_2025-10-08_at_8.58.57_AM.webp';
 
 function Card({ url, alt }: { url: string; alt: string }) {
   return (
@@ -19,21 +31,21 @@ function Card({ url, alt }: { url: string; alt: string }) {
 
 export function InfiniteScrollGallery() {
   const topRowImages = [
-    { url: 'https://lh3.googleusercontent.com/d/1JgexDtBSU_bcnzlpeJkx-ObutOGFccV2', alt: 'Modern website design' },
-    { url: 'https://lh3.googleusercontent.com/d/1kpv6JTv-PtynUXE1_AbuzbFsH6NZgxik', alt: 'Mobile app interface' },
-    { url: 'https://lh3.googleusercontent.com/d/1HSfU-qKFv-chH2RQK6fQ_8msBKil7yMi', alt: 'E-commerce store' },
-    { url: 'https://lh3.googleusercontent.com/d/1S95CEASqXL0HGPiySZvpiPJH2Hie7tOR', alt: 'Creative website' },
-    { url: 'https://lh3.googleusercontent.com/d/1HxoUd-laHA4s3SMWhDfIQ8mcAk0DN3LT', alt: 'Portfolio site' },
-    { url: 'https://lh3.googleusercontent.com/d/1P4jwTLDs6QEO3ip290-kYXL1a-TCw1nq', alt: 'Restaurant website' },
+    { url: img01, alt: 'Our work 1' },
+    { url: img02, alt: 'Our work 2' },
+    { url: img03, alt: 'Our work 3' },
+    { url: img04, alt: 'Our work 4' },
+    { url: img05, alt: 'Our work 5' },
+    { url: img06, alt: 'Our work 6' },
   ];
 
   const bottomRowImages = [
-    { url: 'https://lh3.googleusercontent.com/d/1Rqyh6-15TLfSL3OIUjtxrNNPkvdzY_Iu', alt: 'Creative portfolio' },
-    { url: 'https://lh3.googleusercontent.com/d/111EDnZVx8rBh9N7rfxz5zRtECzpKAJWl', alt: 'Business landing page' },
-    { url: 'https://lh3.googleusercontent.com/d/1-kBdwTweXolmWacRrjdCIn0utrQenM_8', alt: 'Agency showcase' },
-    { url: 'https://lh3.googleusercontent.com/d/1xEhISTMdc83BtYrO3y0vtFecA52ad8vj', alt: 'Product site' },
-    { url: 'https://lh3.googleusercontent.com/d/1-yKQK6KhLdkMsPNsHdlquMiFVe2Zl5hI', alt: 'Tech startup' },
-    { url: 'https://lh3.googleusercontent.com/d/1ppDdKpddqfMlDDTWdnsxveNRTovFkWN9', alt: 'Fashion brand' },
+    { url: img07, alt: 'Our work 7' },
+    { url: img08, alt: 'Our work 8' },
+    { url: img09, alt: 'Our work 9' },
+    { url: img10, alt: 'Our work 10' },
+    { url: img11, alt: 'Our work 11' },
+    { url: img12, alt: 'Our work 12' },
   ];
 
   return (

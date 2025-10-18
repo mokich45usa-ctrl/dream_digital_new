@@ -2,6 +2,7 @@
 
 import { Mail, MessageCircle, Instagram, Facebook, Linkedin, Send } from 'lucide-react';
 import { useState } from 'react';
+import Logo from '../../my materials/Logo.webp';
 
 interface FooterProps {
   onGetStarted?: () => void;
@@ -31,7 +32,7 @@ export function Footer({ onGetStarted }: FooterProps) {
                 </div>
               ) : (
                 <img 
-                  src="https://lh3.googleusercontent.com/d/1VH4HwMqAtNxfNVMNKVfIuPUBwh0jt0pr" 
+                  src={Logo}
                   alt="Dream Digital" 
                   className="h-12 w-auto"
                   onError={() => setLogoError(true)}

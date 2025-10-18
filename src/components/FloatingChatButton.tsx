@@ -2,7 +2,7 @@
 
 import { MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface FloatingChatButtonProps {
   onClick: () => void;
@@ -12,15 +12,13 @@ interface FloatingChatButtonProps {
 
 export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: FloatingChatButtonProps) {
   const [showTeaser, setShowTeaser] = useState(false);
+  const shownThisLoadRef = useRef(false);
 
   useEffect(() => {
-    if (isDrawerOpen || !ready) return;
-    const alreadyShown = sessionStorage.getItem('dd_teaser_shown');
+    if (!ready || isDrawerOpen || shownThisLoadRef.current) return;
     const timer = setTimeout(() => {
-      if (!alreadyShown) {
-        setShowTeaser(true);
-        sessionStorage.setItem('dd_teaser_shown', '1');
-      }
+      shownThisLoadRef.current = true;
+      setShowTeaser(true);
     }, 10000);
     return () => clearTimeout(timer);
   }, [isDrawerOpen, ready]);
@@ -56,7 +54,7 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-8 right-24 z-50 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2"
+            className="fixed bottom-8 right-24 z-60 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2"
             onClick={() => setShowTeaser(false)}
             role="status"
             aria-live="polite"

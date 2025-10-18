@@ -6,6 +6,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from './ui/badge';
 import { ExternalLink, Calendar, Target, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import imgBeautyBusinessForum from '../../my materials/Portfolio/beauty_business_forum.webp';
+import imgTattooArtistPortfolio from '../../my materials/Portfolio/Tattoo_Artist_Portfolio.webp';
+import imgAIMusicPlatform from '../../my materials/Portfolio/AI_Music_Platform.webp';
+import imgSketchArtistPortfolio from '../../my materials/Portfolio/Sketch_Artist_Portfolio.webp';
+import imgStartupLandingPage from '../../my materials/Portfolio/Startup_Landing_Page.webp';
+import imgEcommerceFashionStore from '../../my materials/Portfolio/E-commerce_Fashion_Store.webp';
 import {
   Carousel,
   CarouselContent,
@@ -43,7 +49,7 @@ export function FeaturedWork() {
       solution: "Built a custom forum platform with specialized features for the beauty industry including portfolios, business tools, and discussion boards.",
       results: ["350+ active members", "Daily user engagement", "Positive community feedback", "Growing member base"],
       technologies: ["React", "Node.js", "PostgreSQL", "WebSocket", "AWS"],
-      image: "https://lh3.googleusercontent.com/d/1YA_MADI7Uho7iUbDCxENmyKYqCd82LRG"
+      image: imgBeautyBusinessForum
     },
     {
       id: 2,
@@ -56,7 +62,7 @@ export function FeaturedWork() {
       solution: "Created a visually striking portfolio with high-quality image galleries, artist bio, and integrated booking form for consultations.",
       results: ["25% increase in bookings", "Better client engagement", "Professional online presence", "Easy appointment scheduling"],
       technologies: ["React", "Next.js", "Image Optimization", "Contact Forms"],
-      image: "https://lh3.googleusercontent.com/d/1xxG5Q_wRnyQrBslPKHugkHh_5A90_gm3"
+      image: imgTattooArtistPortfolio
     },
     {
       id: 3,
@@ -69,7 +75,7 @@ export function FeaturedWork() {
       solution: "Designed an interactive landing page with live demos, clear value proposition, and streamlined signup flow for beta access.",
       results: ["180+ beta signups", "Interactive demo engagement", "Clear product communication", "Growing waitlist"],
       technologies: ["React", "Motion", "Audio Integration", "Email Automation"],
-      image: "https://lh3.googleusercontent.com/d/1Q3XSs2SKbsqMh0GL_XG-d0Oh7GwHhavb"
+      image: imgAIMusicPlatform
     },
     {
       id: 4,
@@ -82,23 +88,11 @@ export function FeaturedWork() {
       solution: "Built a clean, image-focused portfolio with organized galleries, commission pricing details, and simple inquiry form.",
       results: ["40+ commission requests", "Professional presentation", "Organized portfolio display", "Easy client contact"],
       technologies: ["React", "Image Gallery", "Lightbox", "Contact Forms"],
-      image: "https://lh3.googleusercontent.com/d/1Da0fQZ6eysbl0-m9gkGnIDnQCoC5SAc9"
-    },
-    {
-      id: 5,
-      caption: "Small Business Website",
-      metric: "3x more inquiries",
-      category: "Business",
-      duration: "4 weeks",
-      description: "Professional website for a local consulting business with service pages, about section, and contact functionality.",
-      challenge: "The business was relying on word-of-mouth and needed a professional website to attract and convert more leads online.",
-      solution: "Created a clean, professional website highlighting services, expertise, and client testimonials with clear call-to-actions.",
-      results: ["3x increase in inquiries", "Professional brand presence", "Clear service presentation", "Better lead quality"],
-      technologies: ["React", "SEO Optimization", "Contact Forms", "Analytics"]
+      image: imgSketchArtistPortfolio
     },
     {
       id: 6,
-      caption: "Startup Landing Page",
+      caption: "Relax Studio",
       metric: "250+ email signups",
       category: "Startup",
       duration: "3 weeks",
@@ -107,11 +101,11 @@ export function FeaturedWork() {
       solution: "Developed a compelling landing page explaining the product value proposition with email capture for early access.",
       results: ["250+ email signups", "Product validation feedback", "Early adopter interest", "Market research data"],
       technologies: ["React", "Email Integration", "Analytics", "A/B Testing"],
-      image: "https://lh3.googleusercontent.com/d/1_V92V443mjVuG4NuyGk3N15u3jEL6mke"
+      image: imgStartupLandingPage
     },
     {
       id: 7,
-      caption: "E-commerce Fashion Store",
+      caption: "Sierra Detail",
       metric: "120+ monthly orders",
       category: "E-commerce",
       duration: "5 weeks",
@@ -120,7 +114,7 @@ export function FeaturedWork() {
       solution: "Built a streamlined e-commerce website with beautiful product galleries, easy navigation, and secure payment processing.",
       results: ["120+ monthly orders", "Smooth checkout experience", "Mobile-friendly shopping", "Growing customer base"],
       technologies: ["React", "Stripe", "Product Management", "Payment Gateway"],
-      image: "https://lh3.googleusercontent.com/d/1iSRE9jK5h8O0Aa8dqU4LGGl75zCrjt4N"
+      image: imgEcommerceFashionStore
     }
   ];
 

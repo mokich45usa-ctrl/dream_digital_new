@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'motion/react';
 import { Hero } from './components/Hero';
 import { Suspense, lazy } from 'react';
 const InfiniteScrollGallery = lazy(() => import('./components/InfiniteScrollGallery').then(m => ({ default: m.InfiniteScrollGallery })));
@@ -24,7 +23,6 @@ import { AIDrawer } from './components/AIDrawer';
 import { Header } from './components/Header';
 import { DreamBackground } from './components/DreamBackground';
 import { FloatingChatButton } from './components/FloatingChatButton';
-import { LoadingScreen } from './components/LoadingScreen';
 import { Toaster } from './components/ui/sonner';
 import { LeadModal } from './components/LeadModal';
 
@@ -36,7 +34,7 @@ interface AccentColor {
 }
 
 export default function App() {
-  const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  // Removed loading screen
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isLeadOpen, setIsLeadOpen] = useState(false);
 
@@ -77,18 +75,10 @@ export default function App() {
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
-  const handleEnter = () => setShowLoadingScreen(false);
   const openLead = () => setIsLeadOpen(true);
 
   return (
     <>
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {showLoadingScreen && (
-          <LoadingScreen onEnter={handleEnter} />
-        )}
-      </AnimatePresence>
-
       {/* Main App */}
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       {/* Navigation Header - Always on top */}
@@ -196,7 +186,7 @@ export default function App() {
       <LeadModal open={isLeadOpen} onOpenChange={setIsLeadOpen} />
       
       {/* Floating Chat Button */}
-      <FloatingChatButton onClick={openDrawer} isDrawerOpen={isDrawerOpen} ready={!showLoadingScreen} />
+      <FloatingChatButton onClick={openDrawer} isDrawerOpen={isDrawerOpen} ready={true} />
       
       {/* Toast notifications */}
       <Toaster />

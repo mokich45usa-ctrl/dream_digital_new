@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import { ArrowRight, AlertTriangle } from 'lucide-react'
 import { useState } from 'react'
+import bigRevealImg from '../../my materials/steps/4_step.webp'
 
 interface BigRevealProps {
   onGetStarted?: () => void
@@ -34,7 +35,7 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
                 </div>
               ) : (
                 <img
-                  src="https://lh3.googleusercontent.com/d/1ZHeaXmproDNQRuMypBSJMGw_l9VMBbyP"
+                  src={bigRevealImg}
                   alt="Business growth visualization"
                   className="w-full h-full object-cover"
                   onError={() => setImageError(true)}

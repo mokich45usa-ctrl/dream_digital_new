@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Logo from '../../my materials/Logo.webp';
 
 interface HeaderProps {
   onGetStarted?: () => void;
@@ -74,7 +75,7 @@ export function Header({ onGetStarted }: HeaderProps) {
                 </div>
               ) : (
                 <img
-                  src="https://lh3.googleusercontent.com/d/1VH4HwMqAtNxfNVMNKVfIuPUBwh0jt0pr"
+                  src={Logo}
                   alt="Dream Digital"
                   className="h-10 lg:h-12 w-auto"
                   onError={() => setLogoError(true)}
