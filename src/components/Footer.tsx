@@ -225,14 +225,6 @@ export function Footer({ onGetStarted }: FooterProps) {
               >
                 Terms of Service
               </a>
-              <a
-                href="/cookies.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors"
-              >
-                Cookie Policy
-              </a>
             </div>
           </div>
         </div>

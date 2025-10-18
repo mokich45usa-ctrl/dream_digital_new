@@ -15,15 +15,15 @@ type StoredConsent = {
   categories: ConsentCategories;
 };
 
-const CONSENT_VERSION = 1; // bump on policy changes
+const CONSENT_VERSION = 2; // bump on policy changes
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [customizing, setCustomizing] = useState(false);
   const [categories, setCategories] = useState<ConsentCategories>({
     essential: true,
-    analytics: false,
-    advertising: false,
+    analytics: true,
+    advertising: true,
   });
 
   useEffect(() => {
@@ -96,7 +96,8 @@ export function CookieConsent() {
           <div className="space-y-4">
             <div>
               <h3 className="text-text-primary font-semibold">Cookie Preferences</h3>
-              <p className="text-sm text-text-secondary">Manage which types of cookies we can use.</p>
+              <p className="text-sm text-text-secondary">Manage which types of cookies we can use. Read our{' '}
+                <a href="/cookies.html" target="_blank" rel="noopener noreferrer" className="underline">Cookie Policy</a>.</p>
             </div>
             <div className="space-y-3">
               <label className="flex items-start gap-3">
@@ -123,6 +124,7 @@ export function CookieConsent() {
             </div>
             <div className="flex items-center justify-end gap-2">
               <Button onClick={() => { setCustomizing(false); }} variant="ghost" className="h-auto px-4 py-2">Back</Button>
+              <Button onClick={rejectAll} variant="ghost" className="h-auto px-4 py-2">Reject all</Button>
               <Button onClick={saveCustom} className="bg-accent-dark text-white hover:bg-accent-dark-soft shadow-soft h-auto px-4 py-2">Save preferences</Button>
             </div>
           </div>
@@ -134,7 +136,6 @@ export function CookieConsent() {
               <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="underline">Terms & Conditions</a>.
             </p>
             <div className="mt-3 sm:mt-0 flex items-center gap-2">
-              <Button onClick={rejectAll} variant="ghost" className="h-auto px-3 py-2">Reject</Button>
               <Button onClick={() => setCustomizing(true)} variant="outline" className="h-auto px-3 py-2">Customize</Button>
               <Button onClick={acceptAll} className="bg-accent-dark text-white hover:bg-accent-dark-soft shadow-soft px-4 py-2 h-auto">Accept</Button>
             </div>
