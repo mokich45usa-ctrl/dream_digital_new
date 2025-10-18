@@ -203,6 +203,12 @@ export function Footer({ onGetStarted }: FooterProps) {
               © {currentYear} Dream Digital. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
+              <button
+                onClick={() => { try { /* @ts-ignore */ window.openCookieSettings?.(); } catch {} }}
+                className="text-white/50 hover:text-white transition-colors"
+              >
+                Cookie Settings
+              </button>
               <a
                 href="/privacy.html"
                 target="_blank"
