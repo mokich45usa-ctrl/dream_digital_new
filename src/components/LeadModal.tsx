@@ -115,9 +115,14 @@ export function LeadModal({ open, onOpenChange }: LeadModalProps) {
               {isSubmitting ? 'Sending…' : 'Send request'}
             </Button>
           </DialogFooter>
-          <div className="pt-1 text-sm text-text-secondary flex items-center gap-2">
+          <div className="pt-1 text-xs text-text-secondary flex items-center gap-2">
             <Lock className="w-4 h-4" />
-            <span>Your info is secure. We'll never share your contact details.</span>
+            <span>
+              By clicking this button, you agree to our{' '}
+              <button type="button" className="underline" onClick={() => { try { /* @ts-ignore */ window.__openPrivacy?.(); } catch {} }}>Privacy Policy</button>
+              {' '}and{' '}
+              <button type="button" className="underline" onClick={() => { try { /* @ts-ignore */ window.__openTerms?.(); } catch {} }}>Terms & Conditions</button>.
+            </span>
           </div>
         </motion.form>
       </DialogContent>

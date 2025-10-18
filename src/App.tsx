@@ -25,6 +25,7 @@ import { DreamBackground } from './components/DreamBackground';
 import { FloatingChatButton } from './components/FloatingChatButton';
 import { Toaster } from './components/ui/sonner';
 import { LeadModal } from './components/LeadModal';
+import { CookieConsent } from './components/ui/cookie-consent';
 
 interface AccentColor {
   name: string;
@@ -190,6 +191,8 @@ export default function App() {
       
       {/* Toast notifications */}
       <Toaster />
+      {/* Cookie Consent */}
+      <CookieConsent />
     </div>
     </>
   );

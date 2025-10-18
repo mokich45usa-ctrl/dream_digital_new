@@ -54,10 +54,10 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-8 right-24 z-60 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2"
-            onClick={() => setShowTeaser(false)}
-            role="status"
-            aria-live="polite"
+            className="fixed bottom-8 right-24 z-60 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none"
+            onClick={() => { setShowTeaser(false); onClick(); }}
+            role="button"
+            aria-label="Open chat assistant"
           >
             <span className="inline-flex h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
             <span className="text-xs font-medium">I'm online.</span>
