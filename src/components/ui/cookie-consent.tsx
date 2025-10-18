@@ -29,8 +29,8 @@ export function CookieConsent() {
         <div className="sm:flex sm:items-center sm:justify-between gap-4">
           <p className="text-sm text-text-secondary">
             We use cookies to improve your experience, analyze traffic, and for ads. Read our{' '}
-            <button onClick={openPrivacy} className="underline">Privacy Policy</button> and{' '}
-            <button onClick={openTerms} className="underline">Terms & Conditions</button>.
+            <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="underline">Privacy Policy</a> and{' '}
+            <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="underline">Terms & Conditions</a>.
           </p>
           <div className="mt-3 sm:mt-0 flex items-center gap-2">
             <Button onClick={acceptAll} className="bg-accent-dark text-white hover:bg-accent-dark-soft shadow-soft px-4 py-2 h-auto">

@@ -204,23 +204,26 @@ export function Footer({ onGetStarted }: FooterProps) {
             </p>
             <div className="flex gap-6 text-sm">
               <a
-                href="#"
+                href="/privacy.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors"
-                onClick={(e) => { e.preventDefault(); setPrivacyOpen(true); }}
               >
                 Privacy Policy
               </a>
               <a
-                href="#"
+                href="/terms.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors"
-                onClick={(e) => { e.preventDefault(); setTermsOpen(true); }}
               >
                 Terms of Service
               </a>
               <a
-                href="#"
+                href="/cookies.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors"
-                onClick={(e) => { e.preventDefault(); setCookieOpen(true); }}
               >
                 Cookie Policy
               </a>

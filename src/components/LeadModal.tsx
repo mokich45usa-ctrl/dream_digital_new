@@ -119,9 +119,9 @@ export function LeadModal({ open, onOpenChange }: LeadModalProps) {
             <Lock className="w-4 h-4" />
             <span>
               By clicking this button, you agree to our{' '}
-              <button type="button" className="underline" onClick={() => { try { /* @ts-ignore */ window.__openPrivacy?.(); } catch {} }}>Privacy Policy</button>
+              <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="underline">Privacy Policy</a>
               {' '}and{' '}
-              <button type="button" className="underline" onClick={() => { try { /* @ts-ignore */ window.__openTerms?.(); } catch {} }}>Terms & Conditions</button>.
+              <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="underline">Terms & Conditions</a>.
             </span>
           </div>
         </motion.form>
