@@ -14,11 +14,17 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
   const [showTeaser, setShowTeaser] = useState(false);
   const shownThisLoadRef = useRef(false);
   const [bottomOffset, setBottomOffset] = useState(24); // px
+  const STORAGE_KEY = 'dd-chat-teaser-shown-v1';
 
   useEffect(() => {
     if (!ready || isDrawerOpen || shownThisLoadRef.current) return;
+    try {
+      const already = sessionStorage.getItem(STORAGE_KEY) === '1';
+      if (already) { shownThisLoadRef.current = true; return; }
+    } catch {}
     const timer = setTimeout(() => {
       shownThisLoadRef.current = true;
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch {}
       setShowTeaser(true);
     }, 10000);
     return () => clearTimeout(timer);
@@ -29,6 +35,11 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
     const hideTimer = setTimeout(() => setShowTeaser(false), 6000);
     return () => clearTimeout(hideTimer);
   }, [showTeaser]);
+
+  // Hide teaser as soon as drawer opens via any trigger
+  useEffect(() => {
+    if (isDrawerOpen && showTeaser) setShowTeaser(false);
+  }, [isDrawerOpen, showTeaser]);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -55,7 +66,7 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             transition={{ duration: 0.2 }}
             onClick={() => { setShowTeaser(false); onClick(); }}
             style={{ bottom: bottomOffset }}
-            className="fixed right-6 z-50 w-14 h-14 bg-accent-dark text-white flex items-center justify-center shadow-xl hover:bg-accent-dark-soft transition-all duration-200"
+            className="fixed right-6 z-[70] w-14 h-14 bg-accent-dark text-white flex items-center justify-center shadow-xl hover:bg-accent-dark-soft transition-all duration-200"
             aria-label="Open chat"
           >
             <MessageCircle className="w-6 h-6" />
@@ -71,7 +82,7 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.2 }}
             style={{ bottom: bottomOffset + 8 }}
-            className="fixed right-24 z-60 bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none"
+            className="fixed right-24 z-[70] bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none"
             onClick={() => { setShowTeaser(false); onClick(); }}
             role="button"
             aria-label="Open chat assistant"
