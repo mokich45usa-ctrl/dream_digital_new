@@ -65,13 +65,30 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LCHJK7LKV"></script>
+    <!-- Google tag (gtag.js) - gated by cookie consent -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);} 
-      gtag('js', new Date());
-      gtag('config', 'G-5LCHJK7LKV', { send_page_view: false });
+      (function(){
+        function initGA(){
+          var s = document.createElement('script');
+          s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5LCHJK7LKV';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);} 
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-5LCHJK7LKV', { send_page_view: false });
+        }
+        try {
+          var raw = localStorage.getItem('cookie-consent');
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && parsed.categories && parsed.categories.analytics) initGA();
+          }
+          window.addEventListener('cookie-consent-change', function(e){
+            try { if (e.detail && e.detail.categories && e.detail.categories.analytics) initGA(); } catch {}
+          });
+        } catch {}
+      })();
     </script>
     </head>
 

@@ -132,7 +132,7 @@ export function FeaturedWork() {
         </div>
 
         {/* Carousel */}
-        <div className="relative mb-12 lg:mb-16 px-0 lg:px-16">
+        <div className="relative mb-12 lg:mb-16 px-0 lg:px-16" style={{ contentVisibility: 'auto', containIntrinsicSize: '800px' } as any}>
           <Carousel
             opts={{
               align: "start",
@@ -161,6 +161,9 @@ export function FeaturedWork() {
                             src={project.image}
                             alt={project.caption}
                             className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/5 transition-colors duration-300"></div>
                         </>

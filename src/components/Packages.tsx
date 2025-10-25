@@ -150,8 +150,25 @@ export function Packages({ onGetQuote }: PackagesProps) {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-bg">
+    <section className="py-20 lg:py-32 bg-bg" style={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' } as any}>
       <div className="max-w-[1200px] mx-auto px-4 lg:px-8">
+        <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: packages.map((p, i) => ({
+              "@type": "Product",
+              name: p.title,
+              description: p.description,
+              offers: {
+                "@type": "Offer",
+                price: p.price.replace(/[^0-9.]/g, ''),
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/InStock'
+              },
+            }))
+          })}
+        </script>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

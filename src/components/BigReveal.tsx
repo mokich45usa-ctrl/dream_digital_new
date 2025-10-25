@@ -40,6 +40,8 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
                   className="w-full h-full object-cover"
                   onError={() => setImageError(true)}
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
               )}
             </div>

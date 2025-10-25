@@ -155,8 +155,9 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
               data-cta="get-started"
               onClick={onGetStarted}
               className="fancy-black"
+              aria-label="Get a professional website quote"
             >
-              <span className="text">Get Started</span>
+              <span className="text">Get a Website Quote</span>
               <span className="top-key"></span>
               <span className="bottom-key-1"></span>
               <span className="bottom-key-2"></span>
@@ -165,8 +166,9 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
             <button 
               onClick={scrollToPricing}
               className="fancy-white"
+              aria-label="See website pricing packages"
             >
-              <span className="text">See Pricing</span>
+              <span className="text">See Website Pricing</span>
               <span className="top-key"></span>
               <span className="bottom-key-1"></span>
               <span className="bottom-key-2"></span>

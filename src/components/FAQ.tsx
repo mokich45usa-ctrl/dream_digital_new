@@ -119,8 +119,22 @@ You just describe your business — we take care of everything from concept to l
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-surface">
+    <section className="py-20 lg:py-32 bg-surface" style={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' } as any}>
       <div className="max-w-[900px] mx-auto px-4 lg:px-8">
+        <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map(q => ({
+              "@type": "Question",
+              name: q.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: q.answer.replace(/\n/g, '<br/>')
+              }
+            }))
+          })}
+        </script>
         
         {/* Header */}
         <motion.div
