@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from './button';
 
 type ConsentCategories = {
@@ -25,6 +25,7 @@ export function CookieConsent() {
     analytics: true,
     advertising: true,
   });
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     try {
@@ -87,10 +88,22 @@ export function CookieConsent() {
     window.openCookieSettings = () => { setVisible(true); setCustomizing(true); };
   }, []);
 
+  useEffect(() => {
+    const emit = () => {
+      const height = visible && wrapperRef.current ? Math.round(wrapperRef.current.getBoundingClientRect().height) : 0;
+      try { window.dispatchEvent(new CustomEvent('cookie-banner-visibility', { detail: { visible, height } })); } catch {}
+    };
+    // emit on state change
+    const raf = requestAnimationFrame(emit);
+    const onResize = () => emit();
+    window.addEventListener('resize', onResize);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize); };
+  }, [visible, customizing]);
+
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-60 px-4 pb-4">
+    <div ref={wrapperRef} className="fixed inset-x-0 bottom-0 z-60 px-4 pb-4">
       <div className="mx-auto max-w-[1080px] rounded-soft border-2 border-border bg-elevated shadow-elevated p-4 sm:p-5">
         {customizing ? (
           <div className="space-y-4">
