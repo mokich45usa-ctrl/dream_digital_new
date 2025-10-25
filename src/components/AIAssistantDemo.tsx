@@ -199,8 +199,9 @@ export function AIAssistantDemo({ onGetStarted }: AIAssistantDemoProps) {
           <div className="p-6 bg-surface border-t-2 border-border">
             <div className="flex items-center gap-3 max-w-2xl mx-auto">
               <button 
-                className="flex-1 bg-elevated border border-border px-4 py-3 text-left text-text-tertiary hover:border-accent-dark transition-colors"
+                className="flex-1 bg-elevated border border-border px-4 py-3 text-left text-text-tertiary hover:border-accent-dark transition-colors focus-visible:ring-4 focus-visible:ring-brand/20"
                 onClick={onGetStarted}
+                aria-label="Open assistant input"
               >
                 Type your message...
               </button>

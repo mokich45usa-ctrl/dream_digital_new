@@ -6,12 +6,12 @@ const { DREAMY_PROMPT } = require('./dreamy-config');
 
 exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Method Not Allowed' }) };
   }
 
   const apiKey = process.env.DEEPSEEK_API_KEY;
   if (!apiKey) {
-    return { statusCode: 500, body: 'DEEPSEEK_API_KEY is not configured' };
+    return { statusCode: 500, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'DEEPSEEK_API_KEY is not configured' }) };
   }
 
   try {
@@ -19,7 +19,7 @@ exports.handler = async function(event) {
     const messages = Array.isArray(body.messages) ? body.messages : [];
 
     if (messages.length === 0) {
-      return { statusCode: 400, body: 'messages are required' };
+      return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'messages are required' }) };
     }
 
     const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -43,7 +43,7 @@ exports.handler = async function(event) {
     const data = await response.json();
     if (!response.ok) {
       const message = data?.error?.message || 'DeepSeek API error';
-      return { statusCode: response.status, body: message };
+      return { statusCode: response.status, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: message }) };
     }
 
     const reply = data?.choices?.[0]?.message?.content || '';
@@ -53,6 +53,6 @@ exports.handler = async function(event) {
       body: JSON.stringify({ reply })
     };
   } catch (err) {
-    return { statusCode: 500, body: 'Server error' };
+    return { statusCode: 500, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Server error' }) };
   }
 };
