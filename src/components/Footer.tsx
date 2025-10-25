@@ -48,7 +48,10 @@ export function Footer({ onGetStarted }: FooterProps) {
                   alt="Dream Digital" 
                   className="h-12 w-auto"
                   onError={() => setLogoError(true)}
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  sizes="(max-width: 768px) 160px, 192px"
                 />
               )}
             </div>
