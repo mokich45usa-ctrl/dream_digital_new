@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
-import { Sparkles, Palette } from 'lucide-react';
+import { Palette } from 'lucide-react';
 
 interface AccentColor {
   name: string;
@@ -19,6 +19,8 @@ interface HeroProps {
 export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColors }: HeroProps) {
   const [showColorPicker, setShowColorPicker] = useState(false);
   const colorPickerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const scrollToPricing = () => {
     const pricingSection = document.querySelector('[data-section="packages"]');
@@ -44,6 +46,40 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
     };
   }, [showColorPicker]);
 
+  // Desktop-only subtle parallax for background blobs
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (window.matchMedia('(pointer: fine)').matches === false) return; // desktop-ish only
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width; // 0..1
+      const relY = (e.clientY - rect.top) / rect.height; // 0..1
+      const target = { x: (relX - 0.5) * 8, y: (relY - 0.5) * 8 }; // max ~8px shift
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setTilt(target));
+    };
+    const onLeave = () => { cancelAnimationFrame(raf); setTilt({ x: 0, y: 0 }); };
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseleave', onLeave);
+    return () => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave); cancelAnimationFrame(raf); };
+  }, []);
+
+  // Mobile: subtle scroll-based parallax (very light)
+  useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches === false) return;
+    let raf = 0;
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      const offset = Math.max(-6, Math.min(6, (y % 120) - 60)) / 2; // -3..3px
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setTilt(t => ({ x: t.x, y: offset })));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
   return (
     <section 
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
@@ -57,7 +93,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
 
 
       {/* Content */}
-      <div className="max-w-[1080px] mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
+      <div ref={containerRef} className="max-w-[1080px] mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
         <div className="text-center space-y-8">
           
           {/* Overline with Color Picker */}
@@ -132,25 +168,27 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
               </div>
             )}
           </div>
+
+          
           
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-[18ch] sm:max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-[18ch] sm:max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '80ms', animationFillMode: 'both' }}>
             Get a professional website from{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">$250</span>
-              <div className="absolute bottom-2 left-0 right-0 h-3 bg-brand/20" />
+              <span className="relative z-10">$300</span>
+              <div className="absolute bottom-1 left-0 right-0 h-3 bg-brand/20 animate-breathe" />
             </span>
             {' '}and jumpstart your business.
           </h1>
           
           {/* Subheadline */}
-          <p className="text-xl lg:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl lg:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '160ms', animationFillMode: 'both' }}>
             Fast. Affordable. Built by professionals.
             <br />No hassle, just results.
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-in" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
             <button 
               data-cta="get-started"
               onClick={onGetStarted}
@@ -176,48 +214,27 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           </div>
 
           {/* Micro trust under CTAs */}
-          <div className="pt-2 text-sm text-text-tertiary text-center">
+          <div className="pt-2 text-sm text-text-tertiary text-center animate-fade-in" style={{ animationDelay: '320ms', animationFillMode: 'both' }}>
             <span className="inline-flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-brand" />
               <span>SSL · Stripe · Basic SEO included</span>
             </span>
           </div>
 
-          {/* Scroll cue to Pricing */}
-          <div className="pt-6">
-            <button onClick={scrollToPricing} className="mx-auto block text-text-secondary hover:text-text-primary text-sm underline-offset-4 hover:underline">
-              See pricing ↓
-            </button>
-          </div>
           
-          {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 pt-8 text-sm text-text-tertiary">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              <span>2-minute application</span>
-            </div>
-            <div className="w-px h-4 bg-border" />
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              <span>24h delivery</span>
-            </div>
-            <div className="w-px h-4 bg-border" />
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              <span>Professional quality</span>
-            </div>
-          </div>
+          
+          
         </div>
       </div>
       
       {/* Decorative elements with dynamic color */}
       <div 
-        className="absolute top-0 right-0 w-[500px] h-[500px] blur-3xl -z-10 transition-all duration-500"
-        style={{ backgroundColor: `${selectedColor.primary}0D` }} // 0D = 5% opacity in hex
+        className="absolute top-0 right-0 w-[500px] h-[500px] blur-3xl -z-10 transition-all duration-500 animate-breathe will-change-transform"
+        style={{ backgroundColor: `${selectedColor.primary}0D`, transform: `translate(${tilt.x}px, ${tilt.y}px)` }}
       />
       <div 
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] blur-3xl -z-10 transition-all duration-500"
-        style={{ backgroundColor: `${selectedColor.dark}0D` }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] blur-3xl -z-10 transition-all duration-500 animate-breathe will-change-transform"
+        style={{ backgroundColor: `${selectedColor.dark}0D`, transform: `translate(${-tilt.x}px, ${-tilt.y}px)` }}
       />
     </section>
   );

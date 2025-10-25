@@ -3711,6 +3711,80 @@
   right: 0;
 }
 
+/* Inverted fancy black: black bg, WHITE border/text */
+.fancy-black-invert {
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: .05em;
+  text-align: center;
+  text-transform: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 0;
+  outline: none;
+  margin: 0;
+  padding: 1rem 2rem;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+}
+
+.fancy-black-invert:before {
+  content: " ";
+  transform-origin: center;
+  background: #fff;
+  width: 1.5625rem;
+  height: 2px;
+  transition: background .3s linear, width .3s linear;
+  position: absolute;
+  top: 50%;
+  left: 1.5em;
+  transform: translateY(-50%);
+}
+
+.fancy-black-invert .text {
+  text-align: left;
+  text-transform: uppercase;
+  color: #fff;
+  padding-left: 2em;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+  display: block;
+}
+
+.fancy-black-invert .top-key,
+.fancy-black-invert .bottom-key-1,
+.fancy-black-invert .bottom-key-2 {
+  background: #ffffff4d;
+  height: 2px;
+  position: absolute;
+}
+
+.fancy-black-invert .top-key { width: 1.5625rem; transition: width .5s ease-out, left .3s ease-out; top: -2px; left: .625rem; }
+.fancy-black-invert .bottom-key-1 { width: 1.5625rem; transition: width .5s ease-out, right .3s ease-out; bottom: -2px; right: 1.875rem; }
+.fancy-black-invert .bottom-key-2 { width: .625rem; transition: width .5s ease-out, right .3s ease-out; bottom: -2px; right: .625rem; }
+
+.fancy-black-invert:hover {
+  background-color: #000; /* keep dark */
+  border-color: #fff;
+}
+
+.fancy-black-invert:hover:before { background: #fff; width: .9375rem; }
+.fancy-black-invert:hover .text { color: #fff; padding-left: 1.5em; }
+.fancy-black-invert:hover .top-key { width: 0; left: -2px; }
+.fancy-black-invert:hover .bottom-key-1,
+.fancy-black-invert:hover .bottom-key-2 { width: 0; right: 0; }
+
 .fancy-white {
   box-sizing: border-box;
   color: #000;
@@ -4331,4 +4405,18 @@
     opacity: var(--tw-exit-opacity, 1);
     transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
+}
+
+/* Subtle breathing for hero background blobs */
+@keyframes breathe {
+  0% { opacity: .05; }
+  100% { opacity: .08; }
+}
+
+.animate-breathe {
+  animation: breathe 9s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe { animation: none !important; }
 }

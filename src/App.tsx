@@ -118,13 +118,10 @@ export default function App() {
     <>
       {/* Main App */}
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      {/* Global animated background */}
+      <DreamBackground intensity="hero" />
       {/* Navigation Header - Always on top */}
       <Header onGetStarted={openLead} />
-
-      {/* Dream background - Hero intensity */}
-      <div className="absolute inset-0" style={{ zIndex: 0 }}>
-        <DreamBackground intensity="hero" />
-      </div>
 
       {/* Background overlay when drawer is open */}
       {isDrawerOpen && (
@@ -157,12 +154,8 @@ export default function App() {
           <Suspense fallback={null}><SimpleProcess /></Suspense>
         </div>
         
-        {/* Normal intensity background for other sections */}
+        {/* Content */}
         <div className="relative">
-          <div className="absolute inset-0" style={{ zIndex: 0 }}>
-            <DreamBackground intensity="normal" />
-          </div>
-          
           <div className="relative z-10">
             {showBelowFold && (
               <>
@@ -178,7 +171,9 @@ export default function App() {
                 <div data-section="big-reveal">
                   <Suspense fallback={null}><BigReveal onGetStarted={openLead} /></Suspense>
                 </div>
-                <div data-section="packages" id="packages">
+                {/* Packages - solid background, background should not distract */}
+                <div data-section="packages" id="packages" className="relative z-10">
+                  <div className="absolute inset-0 bg-white -z-10" />
                   <Suspense fallback={null}><Packages onGetQuote={openLead} /></Suspense>
                 </div>
                 <div data-section="work" id="work">
@@ -193,7 +188,9 @@ export default function App() {
                 <div data-section="ai-demo">
                   <Suspense fallback={null}><AIAssistantDemo onGetStarted={openLead} /></Suspense>
                 </div>
-                <div data-section="footer">
+                {/* Footer - solid background */}
+                <div data-section="footer" className="relative z-10">
+                  <div className="absolute inset-0 bg-accent-dark -z-10" />
                   <Suspense fallback={null}><Footer onGetStarted={openDrawer} /></Suspense>
                 </div>
               </>

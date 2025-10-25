@@ -1,5 +1,6 @@
+import React from 'react';
 import { motion } from 'motion/react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 interface PackagesProps {
   onGetQuote?: () => void;
@@ -19,7 +20,7 @@ interface PricingCardProps {
   onGetStarted?: () => void;
 }
 
-const PricingCard = ({
+const PricingCard: React.FC<PricingCardProps> = ({
   title,
   price,
   description,
@@ -27,11 +28,12 @@ const PricingCard = ({
   delivery,
   isPopular = false,
   onGetStarted,
-}: PricingCardProps) => {
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: isPopular ? -6 : -3, scale: isPopular ? 1.01 : 1.005 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       className="relative h-full"
@@ -45,25 +47,36 @@ const PricingCard = ({
       )}
 
       <div
-        className={`h-full bg-elevated border-2 p-8 transition-all duration-200 ${
+        className={`h-full border-2 p-8 transition-all duration-200 ${
           isPopular 
-            ? 'border-accent-dark' 
-            : 'border-border hover:border-accent-dark'
+            ? 'bg-accent-dark text-white border-accent-dark shadow-elevated' 
+            : 'bg-elevated border-border hover:border-accent-dark hover:shadow-elevated'
         }`}
       >
+        {isPopular && (
+          <div
+            className="pointer-events-none absolute -inset-2 -z-10 rounded-soft opacity-60 blur-[8px]"
+            style={{
+              background: 'radial-gradient(60% 60% at 50% 0%, var(--brand) 0%, transparent 70%)'
+            }}
+          />
+        )}
         {/* Header */}
-        <div className="mb-8 pb-8 border-b-2 border-border">
-          <h3 className="text-2xl font-bold text-text-primary mb-3">
+        <div className={`mb-8 pb-8 border-b-2 ${isPopular ? 'border-white/20' : 'border-border'}`}>
+          <h3 className={`text-2xl font-bold mb-3 ${isPopular ? 'text-white' : 'text-text-primary'}`}>
             {title}
           </h3>
           
           <div className="mb-4">
-            <span className="font-mono text-5xl font-black text-text-primary">
-              {price}
+            <span className="relative inline-block">
+              <span className={`font-mono text-5xl font-black ${isPopular ? 'text-white' : 'text-text-primary'}`}>
+                {price}
+              </span>
+              <span className={`absolute left-0 right-0 -bottom-1 h-2 ${isPopular ? 'bg-brand/20 animate-breathe' : 'bg-brand/10'}`} />
             </span>
           </div>
 
-          <p className="text-text-secondary leading-relaxed">
+          <p className={`${isPopular ? 'text-white/85' : 'text-text-secondary'} leading-relaxed`}>
             {description}
           </p>
         </div>
@@ -75,7 +88,7 @@ const PricingCard = ({
               <div className="flex-shrink-0 mt-1 w-5 h-5 bg-success flex items-center justify-center">
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
-              <span className="text-text-secondary leading-relaxed">
+              <span className={`${isPopular ? 'text-white/80' : 'text-text-secondary'} leading-relaxed`}>
                 {feature.text}
               </span>
             </li>
@@ -83,22 +96,36 @@ const PricingCard = ({
         </ul>
 
         {/* Delivery */}
-        <div className="mb-6 p-4 bg-surface border border-border">
-          <p className="text-sm text-text-secondary">
-            <span className="font-mono font-semibold text-text-primary">⚡ {delivery}</span>
+        <div className={`mb-6 p-4 border ${isPopular ? 'bg-white/5 border-white/20' : 'bg-surface border-border'}`}>
+          <p className={`text-sm ${isPopular ? 'text-white/70' : 'text-text-secondary'}`}>
+            <span className={`font-mono font-semibold ${isPopular ? 'text-white' : 'text-text-primary'}`}>⚡ {delivery}</span>
           </p>
         </div>
 
         {/* CTA */}
-        <button
-          onClick={onGetStarted}
-          className={`w-full ${isPopular ? 'fancy-black' : 'fancy-white'}`}
-        >
-          <span className="text">Get Quote</span>
-          <span className="top-key"></span>
-          <span className="bottom-key-1"></span>
-          <span className="bottom-key-2"></span>
-        </button>
+        {isPopular ? (
+          <button
+            type="button"
+            onClick={onGetStarted}
+            className={`w-full fancy-black-invert focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20`}
+          >
+            <span className="text">Get Quote</span>
+            <span className="top-key"></span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onGetStarted}
+            className={`w-full fancy-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20`}
+          >
+            <span className="text">Get Quote</span>
+            <span className="top-key"></span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
+          </button>
+        )}
       </div>
     </motion.div>
   );
@@ -107,30 +134,30 @@ const PricingCard = ({
 export function Packages({ onGetQuote }: PackagesProps) {
   const packages = [
     {
-      title: 'Business Card Website',
-      price: '$250',
-      description: 'A simple, fast way to get your business online.',
+      title: 'Starter Website',
+      price: '$300',
+      description: 'For new businesses getting online.',
       delivery: '24 hours',
       features: [
-        { text: '1 page: Home, About, Services, Contact' },
-        { text: 'Custom design tailored to your business' },
-        { text: 'Responsive layout (desktop + mobile)' },
-        { text: 'Basic SEO setup' },
+        { text: 'One-page website: Home, About, Services, Contact' },
+        { text: 'Custom layout designed for your brand' },
+        { text: 'Responsive design (desktop + mobile)' },
+        { text: 'Basic SEO setup for Google visibility' },
         { text: 'Contact form + call-to-action' },
-        { text: 'Up to 5 design options' },
       ],
     },
     {
-      title: 'Landing Page',
+      title: 'Smart Website',
       price: '$600',
-      description: 'A one-page site designed to convert visitors into clients.',
+      description: 'For growing businesses ready to attract more clients.',
       delivery: '3-5 days',
       isPopular: true,
       features: [
-        { text: 'Custom structure built around your goal' },
+        { text: 'Everything in the Starter Website' },
+        { text: 'Advanced SEO optimization for better Google ranking' },
+        { text: 'Google Business Profile setup (Google Maps)' },
+        { text: 'Integrated Google Analytics and performance tracking' },
         { text: 'Conversion-optimized layout' },
-        { text: 'Lead capture form + analytics' },
-        { text: 'SEO-ready and mobile responsive' },
         { text: 'Up to 10 design variations' },
       ],
     },
@@ -138,7 +165,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
       title: 'Multi-Page Website',
       price: '$1200',
       description: 'A full website with all key sections your business needs.',
-      delivery: '7-10 days',
+      delivery: '8-10 days',
       features: [
         { text: 'Up to 5 pages: Home, About, Services, Work, Contact' },
         { text: 'SEO-ready and responsive design' },

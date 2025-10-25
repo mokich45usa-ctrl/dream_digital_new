@@ -45,8 +45,8 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
     const handler = (e: Event) => {
       try {
         const detail = (e as CustomEvent).detail as { visible?: boolean; height?: number };
-        const extra = detail?.visible ? Math.min(96, Math.max(0, (detail.height ?? 0))) : 0;
-        setBottomOffset(24 + extra);
+        const extra = detail?.visible ? Math.max(0, (detail.height ?? 0)) : 0;
+        setBottomOffset(24 + extra + 8);
       } catch {
         setBottomOffset(24);
       }
@@ -64,10 +64,13 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            onClick={() => { setShowTeaser(false); onClick(); }}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowTeaser(false); onClick(); }}
             style={{ bottom: bottomOffset }}
-            className="fixed right-6 z-[70] w-14 h-14 bg-accent-dark text-white flex items-center justify-center shadow-xl hover:bg-accent-dark-soft transition-all duration-200"
+            className="fixed right-6 z-[70] w-14 h-14 bg-accent-dark text-white flex items-center justify-center shadow-xl hover:bg-accent-dark-soft transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20"
             aria-label="Open chat"
+            type="button"
+            role="button"
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowTeaser(false); onClick(); } }}
           >
             <MessageCircle className="w-6 h-6" />
           </motion.button>
@@ -82,10 +85,12 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.2 }}
             style={{ bottom: bottomOffset + 8 }}
-            className="fixed right-24 z-[70] bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none"
-            onClick={() => { setShowTeaser(false); onClick(); }}
+            className="fixed right-24 z-[70] bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowTeaser(false); onClick(); }}
             role="button"
             aria-label="Open chat assistant"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowTeaser(false); onClick(); } }}
           >
             <span className="inline-flex h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
             <span className="text-xs font-medium">I'm online.</span>
