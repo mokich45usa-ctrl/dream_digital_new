@@ -273,6 +273,10 @@ export function FeaturedWork() {
                       src={selectedProject.image}
                       alt={selectedProject.caption}
                       className="w-full h-auto aspect-video object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                      sizes="(max-width: 768px) 100vw, 800px"
                     />
                   </div>
                 )}

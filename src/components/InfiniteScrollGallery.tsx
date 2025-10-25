@@ -18,7 +18,7 @@ function Card({ url, alt }: { url: string; alt: string }) {
       className="flex-shrink-0 w-[272px] h-[152px] lg:w-[400px] lg:h-[224px]
                  rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden
                  transition-all duration-300 hover:scale-105 hover:shadow-elevated cursor-pointer"
-      style={{ boxShadow: 'var(--shadow-soft)' }}
+      style={{ boxShadow: 'var(--shadow-soft)', aspectRatio: '16 / 9' } as any}
     >
       <ImageWithFallback
         src={url}
