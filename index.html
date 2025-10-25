@@ -4,13 +4,30 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <!-- Google Tag Manager -->
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-PGJX6J3S');</script>
-      <!-- End Google Tag Manager -->
+      <!-- Google Tag Manager - gated by cookie consent (Analytics) -->
+      <script>
+        (function(){
+          var GTM_ID = 'GTM-PGJX6J3S';
+          function initGTM(){
+            if (window.__gtmLoaded) return; window.__gtmLoaded = true;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            var f=document.getElementsByTagName('script')[0];
+            var j=document.createElement('script'); j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+GTM_ID;
+            f.parentNode.insertBefore(j,f);
+          }
+          try {
+            var raw = localStorage.getItem('cookie-consent');
+            if (raw) {
+              var parsed = JSON.parse(raw);
+              if (parsed && parsed.categories && parsed.categories.analytics) initGTM();
+            }
+            window.addEventListener('cookie-consent-change', function(e){
+              try { if (e.detail && e.detail.categories && e.detail.categories.analytics) initGTM(); } catch {}
+            });
+          } catch {}
+        })();
+      </script>
       <title>Dream Digital — Professional Websites, Built Fast</title>
     
     
