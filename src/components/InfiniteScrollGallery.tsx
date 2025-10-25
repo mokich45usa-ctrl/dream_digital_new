@@ -24,6 +24,10 @@ function Card({ url, alt }: { url: string; alt: string }) {
         src={url}
         alt={alt}
         className="w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
+        fetchPriority="low"
+        sizes="(max-width: 640px) 272px, (max-width: 1024px) 400px, 560px"
       />
     </div>
   );

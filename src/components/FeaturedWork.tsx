@@ -164,6 +164,7 @@ export function FeaturedWork() {
                             loading="lazy"
                             decoding="async"
                             fetchPriority="low"
+                            sizes="(max-width: 640px) 272px, (max-width: 1024px) 400px, 560px"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/5 transition-colors duration-300"></div>
                         </>
