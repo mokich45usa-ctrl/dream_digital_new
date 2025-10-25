@@ -134,7 +134,7 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-[18ch] sm:max-w-4xl mx-auto">
             Get a professional website from{' '}
             <span className="relative inline-block">
               <span className="relative z-10">$250</span>
@@ -172,6 +172,21 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
               <span className="top-key"></span>
               <span className="bottom-key-1"></span>
               <span className="bottom-key-2"></span>
+            </button>
+          </div>
+
+          {/* Micro trust under CTAs */}
+          <div className="pt-2 text-sm text-text-tertiary text-center">
+            <span className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+              <span>SSL · Stripe · Basic SEO included</span>
+            </span>
+          </div>
+
+          {/* Scroll cue to Pricing */}
+          <div className="pt-6">
+            <button onClick={scrollToPricing} className="mx-auto block text-text-secondary hover:text-text-primary text-sm underline-offset-4 hover:underline">
+              See pricing ↓
             </button>
           </div>
           
