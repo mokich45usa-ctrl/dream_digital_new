@@ -19,12 +19,12 @@ const Packages = lazy(() => import('./components/Packages').then(m => ({ default
 const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
 const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
-import { AIDrawer } from './components/AIDrawer';
+const AIDrawer = lazy(() => import('./components/AIDrawer').then(m => ({ default: m.AIDrawer })));
 import { Header } from './components/Header';
 import { DreamBackground } from './components/DreamBackground';
 import { FloatingChatButton } from './components/FloatingChatButton';
-import { Toaster } from './components/ui/sonner';
-import { LeadModal } from './components/LeadModal';
+const Toaster = lazy(() => import('./components/ui/sonner').then(m => ({ default: m.Toaster })));
+const LeadModal = lazy(() => import('./components/LeadModal').then(m => ({ default: m.LeadModal })));
 import { CookieConsent } from './components/ui/cookie-consent';
 
 interface AccentColor {
@@ -38,6 +38,8 @@ export default function App() {
   // Removed loading screen
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isLeadOpen, setIsLeadOpen] = useState(false);
+  const [showBelowFold, setShowBelowFold] = useState(false);
+  const [showToaster, setShowToaster] = useState(false);
 
   // Accent colors for user customization
   const accentColors: AccentColor[] = [
@@ -74,6 +76,40 @@ export default function App() {
     document.documentElement.style.setProperty('--brand-light', selectedColor.light);
   }, [selectedColor]);
 
+  // Defer below-the-fold sections to improve mobile LCP
+  useEffect(() => {
+    let idleId: number | undefined;
+    const mark = () => setShowBelowFold(true);
+    try {
+      // @ts-ignore
+      if (window.requestIdleCallback) {
+        // @ts-ignore
+        idleId = window.requestIdleCallback(mark, { timeout: 1500 });
+      } else {
+        idleId = window.setTimeout(mark, 1000);
+      }
+    } catch {
+      idleId = window.setTimeout(mark, 1000);
+    }
+    const early = () => setShowBelowFold(true);
+    window.addEventListener('scroll', early, { once: true } as any);
+    window.addEventListener('pointerdown', early, { once: true } as any);
+    window.addEventListener('keydown', early, { once: true } as any);
+    return () => {
+      try {
+        // @ts-ignore
+        if (window.cancelIdleCallback && idleId) window.cancelIdleCallback(idleId);
+      } catch {}
+      if (idleId) window.clearTimeout(idleId);
+    };
+  }, []);
+
+  // Defer toast mounting
+  useEffect(() => {
+    const id = window.setTimeout(() => setShowToaster(true), 1200);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
   const openLead = () => setIsLeadOpen(true);
@@ -109,10 +145,12 @@ export default function App() {
           />
         </div>
 
-        {/* Infinite Scroll Gallery - Pure visual, no background */}
-        <div data-section="infinite-gallery" className="relative py-8 lg:py-12 bg-white">
-          <Suspense fallback={null}><InfiniteScrollGallery /></Suspense>
-        </div>
+        {/* Infinite Scroll Gallery - defer for LCP */}
+        {showBelowFold && (
+          <div data-section="infinite-gallery" className="relative py-8 lg:py-12 bg-white">
+            <Suspense fallback={null}><InfiniteScrollGallery /></Suspense>
+          </div>
+        )}
 
         {/* Simple Process - White background */}
         <div data-section="simple-process" className="relative bg-white">
@@ -126,44 +164,40 @@ export default function App() {
           </div>
           
           <div className="relative z-10">
-            <div data-section="trust-security">
-            <Suspense fallback={null}><TrustAndSecurity onGetStarted={openLead} /></Suspense>
-            </div>
-            <div data-section="stats">
-              <Suspense fallback={null}><Stats /></Suspense>
-            </div>
-            {/* <div data-section="how-it-works">
-              <HowItWorks />
-            </div> */}
-            {/* <div data-section="payment-process">
-              <PaymentProcess onGetQuote={openDrawer} onSeePricing={openDrawer} />
-            </div> */}
-            {/* Professional Websites - Before pricing */}
-            <div data-section="professional-websites">
-              <Suspense fallback={null}><ProfessionalWebsites /></Suspense>
-            </div>
-            {/* Big Reveal - Dramatic conversion block */}
-            <div data-section="big-reveal">
-              <Suspense fallback={null}><BigReveal onGetStarted={openLead} /></Suspense>
-            </div>
-            <div data-section="packages" id="packages">
-              <Suspense fallback={null}><Packages onGetQuote={openLead} /></Suspense>
-            </div>
-            <div data-section="work" id="work">
-              <Suspense fallback={null}><FeaturedWork /></Suspense>
-            </div>
-            <div data-section="testimonials">
-              <Suspense fallback={null}><Testimonials /></Suspense>
-            </div>
-            <div data-section="faq" id="faq">
-              <Suspense fallback={null}><FAQ onGetStarted={openLead} /></Suspense>
-            </div>
-            <div data-section="ai-demo">
-              <Suspense fallback={null}><AIAssistantDemo onGetStarted={openLead} /></Suspense>
-            </div>
-            <div data-section="footer">
-              <Suspense fallback={null}><Footer onGetStarted={openDrawer} /></Suspense>
-            </div>
+            {showBelowFold && (
+              <>
+                <div data-section="trust-security">
+                  <Suspense fallback={null}><TrustAndSecurity onGetStarted={openLead} /></Suspense>
+                </div>
+                <div data-section="stats">
+                  <Suspense fallback={null}><Stats /></Suspense>
+                </div>
+                <div data-section="professional-websites">
+                  <Suspense fallback={null}><ProfessionalWebsites /></Suspense>
+                </div>
+                <div data-section="big-reveal">
+                  <Suspense fallback={null}><BigReveal onGetStarted={openLead} /></Suspense>
+                </div>
+                <div data-section="packages" id="packages">
+                  <Suspense fallback={null}><Packages onGetQuote={openLead} /></Suspense>
+                </div>
+                <div data-section="work" id="work">
+                  <Suspense fallback={null}><FeaturedWork /></Suspense>
+                </div>
+                <div data-section="testimonials">
+                  <Suspense fallback={null}><Testimonials /></Suspense>
+                </div>
+                <div data-section="faq" id="faq">
+                  <Suspense fallback={null}><FAQ onGetStarted={openLead} /></Suspense>
+                </div>
+                <div data-section="ai-demo">
+                  <Suspense fallback={null}><AIAssistantDemo onGetStarted={openLead} /></Suspense>
+                </div>
+                <div data-section="footer">
+                  <Suspense fallback={null}><Footer onGetStarted={openDrawer} /></Suspense>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
