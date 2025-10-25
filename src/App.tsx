@@ -158,16 +158,16 @@ export default function App() {
             <div data-section="big-reveal">
               <Suspense fallback={null}><BigReveal onGetStarted={openLead} /></Suspense>
             </div>
-            <div data-section="packages">
+            <div data-section="packages" id="packages">
               <Suspense fallback={null}><Packages onGetQuote={openLead} /></Suspense>
             </div>
-            <div data-section="work">
+            <div data-section="work" id="work">
               <Suspense fallback={null}><FeaturedWork /></Suspense>
             </div>
             <div data-section="testimonials">
               <Suspense fallback={null}><Testimonials /></Suspense>
             </div>
-            <div data-section="faq">
+            <div data-section="faq" id="faq">
               <Suspense fallback={null}><FAQ onGetStarted={openLead} /></Suspense>
             </div>
             <div data-section="ai-demo">
