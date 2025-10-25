@@ -80,6 +80,8 @@ export function Header({ onGetStarted }: HeaderProps) {
                   className="h-10 lg:h-12 w-auto"
                   onError={() => setLogoError(true)}
                   loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               )}
             </div>
