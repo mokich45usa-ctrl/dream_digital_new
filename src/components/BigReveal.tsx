@@ -42,6 +42,7 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
+                  sizes="(max-width: 768px) 100vw, 540px"
                 />
               )}
             </div>

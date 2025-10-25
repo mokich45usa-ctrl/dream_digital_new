@@ -39,7 +39,7 @@ export function ProfessionalWebsites() {
           </h2>
           
           <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-            Every site we build is designed to attract customers, build trust, and drive results.
+            Every site we build is designed to attract customers, build trust, and drive results. See our <a href="#work" className="underline">recent portfolio</a> or explore <a href="#packages" className="underline">website pricing</a>.
           </p>
         </motion.div>
 

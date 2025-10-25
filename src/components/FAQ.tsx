@@ -155,7 +155,7 @@ You just describe your business — we take care of everything from concept to l
           </h2>
           
           <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-            Everything you need to know about our service
+            Everything you need to know about our service. Still deciding? Check <a href="#packages" className="underline">pricing packages</a> and <a href="#work" className="underline">portfolio</a>.
           </p>
         </motion.div>
 

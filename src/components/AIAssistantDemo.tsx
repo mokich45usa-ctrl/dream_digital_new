@@ -114,7 +114,7 @@ export function AIAssistantDemo({ onGetStarted }: AIAssistantDemoProps) {
   );
 
   return (
-    <section className="py-20 lg:py-32 bg-surface">
+    <section className="py-20 lg:py-32 bg-surface" style={{ contentVisibility: 'auto', containIntrinsicSize: '900px' } as any}>
       <div className="max-w-4xl mx-auto px-4 lg:px-8">
         
         {/* Header */}

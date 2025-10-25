@@ -31,6 +31,7 @@ export function TrustAndSecurity({ onGetStarted }: TrustAndSecurityProps) {
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"
+                sizes="(max-width: 768px) 100vw, 540px"
               />
             </div>
             

@@ -73,7 +73,7 @@ export function Stats() {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-surface border-y-2 border-border">
+    <section className="py-20 lg:py-32 bg-surface border-y-2 border-border" style={{ contentVisibility: 'auto', containIntrinsicSize: '600px' } as any}>
       <div className="max-w-[1080px] mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {stats.map((stat, index) => (

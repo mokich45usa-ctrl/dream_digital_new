@@ -188,7 +188,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
           </h2>
           
           <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-            Choose the package that fits your needs. All prices are fixed — no hidden costs.
+            Choose the package that fits your needs. All prices are fixed — no hidden costs. Want to see results first? Browse our <a href="#work" className="underline">portfolio</a>.
           </p>
         </motion.div>
 
