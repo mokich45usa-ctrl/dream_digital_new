@@ -119,7 +119,7 @@ You just describe your business — we take care of everything from concept to l
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-surface" style={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' } as any}>
+    <section className="py-20 lg:py-32 bg-surface cv-auto cis-1000">
       <div className="max-w-[900px] mx-auto px-4 lg:px-8">
         <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify({

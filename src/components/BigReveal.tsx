@@ -25,7 +25,7 @@ export function BigReveal({ onGetStarted }: BigRevealProps) {
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             className="relative order-2 lg:order-1"
           >
-            <div className="relative border-2 border-border overflow-hidden aspect-[4/3] bg-surface">
+            <div className="relative border-2 border-border overflow-hidden ar-4-3 bg-surface">
               {imageError ? (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-danger/10 to-warning/10">
                   <div className="text-center p-8">

@@ -126,18 +126,6 @@ export default function App() {
           </div>
           
           <div className="relative z-10">
-            {/* <div data-section="trust">
-              <TrustStrip />
-            </div> */}
-            {/* <div data-section="portfolio">
-              <PortfolioShowcase onViewProject={openDrawer} />
-            </div> */}
-            {/* <div data-section="our-works">
-              <OurWorksWithSteps onSeeMore={openDrawer} />
-            </div> */}
-            {/* <div data-section="promise">
-              <OurPromise onStartWithDreamy={openDrawer} />
-            </div> */}
             <div data-section="trust-security">
             <Suspense fallback={null}><TrustAndSecurity onGetStarted={openLead} /></Suspense>
             </div>

@@ -55,8 +55,7 @@ export function InfiniteScrollGallery() {
   return (
     <section 
       data-section="infinite-gallery" 
-      className="relative overflow-hidden py-0"
-      style={{ contentVisibility: 'auto', containIntrinsicSize: '700px' } as any}
+      className="relative overflow-hidden py-0 cv-auto cis-800"
     >
       {/* TOP ROW */}
       <div className="overflow-hidden mb-4 lg:mb-6">

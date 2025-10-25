@@ -150,7 +150,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-bg" style={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' } as any}>
+    <section className="py-20 lg:py-32 bg-bg cv-auto cis-1000">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-8">
         <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify({

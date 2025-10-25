@@ -23,7 +23,7 @@ export function TrustAndSecurity({ onGetStarted }: TrustAndSecurityProps) {
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             className="relative"
           >
-            <div className="relative border-2 border-border overflow-hidden" style={{ aspectRatio: '4 / 3' } as any}>
+            <div className="relative border-2 border-border overflow-hidden ar-4-3">
               <ImageWithFallback
                 src={handshakeImg}
                 alt="Modern website on laptop screen"

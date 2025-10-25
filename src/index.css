@@ -538,6 +538,15 @@
 }
 
 @layer utilities {
+  .cv-auto {
+    content-visibility: auto;
+  }
+  .cis-600 { contain-intrinsic-size: 600px; }
+  .cis-800 { contain-intrinsic-size: 800px; }
+  .cis-900 { contain-intrinsic-size: 900px; }
+  .cis-1000 { contain-intrinsic-size: 1000px; }
+  .ar-video { aspect-ratio: 16 / 9; }
+  .ar-4-3 { aspect-ratio: 4 / 3; }
   .pointer-events-none {
     pointer-events: none;
   }
