@@ -158,7 +158,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
         { text: 'Google Business Profile setup (Google Maps)' },
         { text: 'Integrated Google Analytics and performance tracking' },
         { text: 'Conversion-optimized layout' },
-        { text: 'Up to 10 design variations' },
+        { text: 'Up to 5 design variations' },
       ],
     },
     {
@@ -171,7 +171,7 @@ export function Packages({ onGetQuote }: PackagesProps) {
         { text: 'SEO-ready and responsive design' },
         { text: 'Integrated contact forms and analytics' },
         { text: 'Navigation menu and footer' },
-        { text: '10 unique layout options to choose from' },
+        { text: '5 unique layout options to choose from' },
       ],
     },
   ];

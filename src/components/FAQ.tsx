@@ -92,7 +92,7 @@ We start immediately after confirming your payment.`
     {
       question: "Will I get to choose the design?",
       answer: `Absolutely.
-Before we begin building, we'll send you up to 10 unique design concepts for your website.
+Before we begin building, we'll send you up to 5 unique design concepts for your website.
 You can select your favorite, and we'll tailor it to your brand.`
     },
     {
