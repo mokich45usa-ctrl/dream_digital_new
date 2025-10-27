@@ -80,12 +80,12 @@ export function FloatingChatButton({ onClick, isDrawerOpen, ready = true }: Floa
       <AnimatePresence>
         {showTeaser && !isDrawerOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.2 }}
-            style={{ bottom: bottomOffset + 8 }}
-            className="fixed right-24 z-[70] bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20"
+            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.9 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ bottom: bottomOffset + 72 }}
+            className="fixed right-6 z-[70] bg-accent-dark text-white border border-border shadow-elevated px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/20"
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowTeaser(false); onClick(); }}
             role="button"
             aria-label="Open chat assistant"
