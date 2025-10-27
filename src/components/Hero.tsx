@@ -175,8 +175,8 @@ export function Hero({ onGetStarted, selectedColor, setSelectedColor, accentColo
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-text-primary max-w-[18ch] sm:max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '80ms', animationFillMode: 'both' }}>
             Get a professional website from{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">$300</span>
-              <div className="absolute bottom-1 left-0 right-0 h-3 bg-brand/20 animate-breathe" />
+              <span className="relative z-10 text-text-primary">$300</span>
+              <div className="absolute bottom-1 left-0 right-0 h-3 bg-brand/20" />
             </span>
             {' '}and jumpstart your business.
           </h1>
